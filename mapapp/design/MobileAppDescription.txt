@@ -1,0 +1,19 @@
+The mobile App I am going to create is a basic math flash card mobile app. 
+
+I will start with basic add, subtract, multiply, divide, then move onto more difficult math topics.
+
+This initial app is targeting elemetary school children.
+
+I have a apple phone that I can test the app on.
+Some of the native Capacitor plugins I am considering are: 
+ -- Hapatics
+ -- Toast 
+ -- Screen Reader
+ 
+ 
+ The app will have at a minimum four graphical buttons (+, -, x, /) that will open to flash cards related to the button.
+ The student will have to enter the correct response for each problem. When they have completed the set, a an encourging toast will popup with their results.
+ The application should keep track of the total number of problems practiced and the total number correct.
+ 
+ Future enhancments - is to have achivement levels. When those are reached, the problems get tougher.
+ 
