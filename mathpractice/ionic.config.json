@@ -1,0 +1,7 @@
+{
+  "name": "mathpractice",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

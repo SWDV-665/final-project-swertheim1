@@ -1,7 +1,0 @@
-{
-  "name": "mathapp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
