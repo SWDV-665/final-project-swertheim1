@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'problems-page',
     loadChildren: () => import('./problems-page/problems-page.module').then( m => m.ProblemsPagePageModule)
   },
+  {
+    path: 'add-sub-mul-div-topics',
+    loadChildren: () => import('./add-sub-mul-div-topics/add-sub-mul-div-topics.module').then( m => m.AddSubMulDivTopicsPageModule)
+  },
 ];
 
 @NgModule({

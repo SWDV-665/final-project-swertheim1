@@ -12,4 +12,8 @@ export class ProblemsPagePage implements OnInit {
   ngOnInit() {
   }
 
+  listTitle(){
+    const titles = ['Addition', 'Subtraction', 'Multiplication','Division']
+  }
+
 }

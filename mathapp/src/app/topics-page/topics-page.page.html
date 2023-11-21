@@ -10,4 +10,22 @@
       <ion-title size="large">Math Topics Page</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-button  text-capitalize=“false” slot='start' id="calc-type" (click)="openProblemsPage()">Whole Numbers:  0, 1, 2, 3, etc.</ion-button> 
+          
+    </ion-item>
+    <ion-item>
+      <ion-button id="calc-type" (click)="openProblemsPage()" text-lowercase> Decimals: 0.1, 0.2, 0.3, etc. </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button id="calc-type" (click)="openProblemsPage()">Fractions: , &#185;/&#8323;, &#178;/&#8325;, etc.</ion-button> 
+    </ion-item>
+    <ion-item>
+      <ion-button id="calc-type" (click)="openProblemsPage()">Exponents: &#88;&#185;, &#88;&#178;, &#88;&#179; etc.</ion-button> 
+    </ion-item>
+  
+  </ion-list>
+
 </ion-content>

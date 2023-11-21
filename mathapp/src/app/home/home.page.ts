@@ -10,9 +10,7 @@ export class HomePage {
 
   constructor(private router: Router) {}
 
-  openProblemsPage() {
-    this.router.navigateByUrl('/problems-page');
-  }
+
 
   openTopicsPage() {
     this.router.navigateByUrl('/topics-page');
