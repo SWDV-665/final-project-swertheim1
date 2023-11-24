@@ -35,16 +35,17 @@
 ion-col {
   background-color: #fff;
   border: solid 1px #fff;
-  color: #fff;
+  color: gray;
   text-align: center;
 }
 
-ion-grid ion-row ion-center {
+ion-grid ion-row ion-col {
    text-align: center;
    justify-content: center;
    display: flex;
    align-items: center;
    justify-content: center;
+   border-bottom: lightgray;
 }
 
 button {
@@ -53,5 +54,8 @@ button {
 
 ion-row {
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  border-bottom: gray;
+  background-color: gray;
+  
 }

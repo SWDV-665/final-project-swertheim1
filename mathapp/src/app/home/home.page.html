@@ -4,6 +4,7 @@
       Math App
     </ion-title>
   </ion-toolbar>
+  <ion-back-button> Back </ion-back-button>
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -12,9 +13,7 @@
   
   <ion-grid fixed="true">
     <ion-row class="d-flex ion-justify-content-center">
-
-          <h1> Select an Operation </h1>
-
+          <!-- <h1> Select an Operation </h1> -->
     </ion-row>
     <ion-row >
       <ion-col size=6 class="d-flex ion-justify-content-center">
@@ -22,6 +21,7 @@
           <a id="calc-type" (click)="openTopicsPage()">
             <img src="../../assets/images/plus3@300x.png"/>
           </a>
+          <h2>Addition</h2>
         </button>
       </ion-col>
       <ion-col size=6 class="d-flex ion-justify-content-center">
@@ -29,15 +29,21 @@
           <a id="calc-type" (click)="openTopicsPage()">
             <img src="../../assets/images/minus3@300x.png" />
           </a>
+          <h2>Subtraction</h2>
         </button>
       </ion-col>
+      
+    </ion-row>
+    <ion-row class="d-flex ion-justify-content-center">
+      <!-- <h1> Select an Operation </h1> -->
     </ion-row>
     <ion-row>
-      <ion-col size=6 class="d-flex ion-justify-content-center">\
+      <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
           <a id="calc-type" (click)="openTopicsPage()">
             <img src="../../assets/images/times3@300x.png" />
           </a>
+          <h2>Multiplication</h2>
         </button>
       </ion-col>
     
@@ -46,16 +52,20 @@
           <a id="calc-type" (click)="openTopicsPage()">
             <img src="../../assets/images/divide3@300x.png" />
           </a>
+          <h2>Division</h2>
         </button>
       </ion-col>
     </ion-row>
-    
+    <ion-row class="d-flex ion-justify-content-center">
+      <!-- <h1> Select an Operation </h1> -->
+  </ion-row>
     <ion-row>
-      <ion-col size=6 class="d-flex ion-justify-content-center">\
+      <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
           <a id="calc-type" (click)="openTopicsPage()">
             <img src="../../assets/images/percent3@300x.png" />
           </a>
+          <h2>Percent</h2>
         </button>
       </ion-col>
     
@@ -64,6 +74,7 @@
           <a id="calc-type" (click)="openTopicsPage()">
             <img src="../../assets/images/ratio3@300x.png" />
           </a>
+          <h2>Ratios</h2>
         </button>
       </ion-col>
     </ion-row>
