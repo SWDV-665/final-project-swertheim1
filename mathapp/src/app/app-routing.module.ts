@@ -12,8 +12,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'topics-page',
-    loadChildren: () => import('./topics-page/topics-page.module').then( m => m.TopicsPagePageModule)
+    path: 'topics',
+    loadChildren: () => import('./topics/topics.module').then( m => m.TopicsPageModule)
   },
   {
     path: 'problems-page',
@@ -23,6 +23,11 @@ const routes: Routes = [
     path: 'add-sub-mul-div-topics',
     loadChildren: () => import('./add-sub-mul-div-topics/add-sub-mul-div-topics.module').then( m => m.AddSubMulDivTopicsPageModule)
   },
+  {
+    path: 'addition',
+    loadChildren: () => import('./addition/addition.module').then( m => m.AdditionPageModule)
+  },
+
 ];
 
 @NgModule({

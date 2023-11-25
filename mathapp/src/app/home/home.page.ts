@@ -14,7 +14,7 @@ export class HomePage {
   // navigateToTopicsPage() {
   //   this.router.navigate(['/topics']);
   openTopicsPage() {
-    this.router.navigateByUrl('/topics-page');
+    this.router.navigateByUrl('/topics');
   }
 }
 

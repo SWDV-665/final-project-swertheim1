@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>addition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">addition</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="randomNumber1 !== undefined && randomNumber2 !== undefined">
+    <p>Random Number 1: {{ randomNumber1 }}</p>
+    <p>Random Number 2: {{ randomNumber2 }}</p>
+  </div>
+
+  <ion-grid>
+   <ion-row>
+    <ion-col>
+  
+    </ion-col>
+    <ion-col>
+      <ion-button>{{ randomNumber1 }}</ion-button>
+    </ion-col>
+   </ion-row>
+   <ion-row>
+    <ion-col>
+      <ion-button> + </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button >{{ randomNumber2 }}</ion-button>
+    </ion-col>
+   </ion-row>
+  </ion-grid>
+</ion-content>

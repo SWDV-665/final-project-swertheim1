@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "mathapp",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
