@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProblemsPagePage } from './problems-page.page';
+import { ProblemsPageComponent } from './problems-page.page';
 
 describe('ProblemsPagePage', () => {
-  let component: ProblemsPagePage;
-  let fixture: ComponentFixture<ProblemsPagePage>;
+  let component: ProblemsPageComponent;
+  let fixture: ComponentFixture<ProblemsPageComponent>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(ProblemsPagePage);
+    fixture = TestBed.createComponent(ProblemsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
@@ -15,3 +15,7 @@ describe('ProblemsPagePage', () => {
     expect(component).toBeTruthy();
   });
 });
+
+function async(arg0: () => void): jasmine.ImplementationCallback {
+  throw new Error('Function not implemented.');
+}

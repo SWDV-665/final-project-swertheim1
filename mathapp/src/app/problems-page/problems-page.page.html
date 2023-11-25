@@ -12,4 +12,8 @@
   </ion-header>
 
   <h1> this is the Problem Page </h1>
+  <div *ngIf="randomNumber1 !== undefined && randomNumber2 !== undefined">
+    <p>Random Number 1: {{ randomNumber1 }}</p>
+    <p>Random Number 2: {{ randomNumber2 }}</p>
+  </div>
 </ion-content>

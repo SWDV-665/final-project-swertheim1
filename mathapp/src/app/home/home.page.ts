@@ -11,7 +11,8 @@ export class HomePage {
   constructor(private router: Router) {}
 
 
-
+  // navigateToTopicsPage() {
+  //   this.router.navigate(['/topics']);
   openTopicsPage() {
     this.router.navigateByUrl('/topics-page');
   }

@@ -9,12 +9,11 @@ import { Router } from '@angular/router'
 export class TopicsPagePage implements OnInit {
 
   constructor(private router: Router) { }
-  
-  openProblemsPage() {
-    this.router.navigateByUrl('/problems-page');
-  }
-  
+
   ngOnInit() {
   }
 
+  openProblemsPage() {
+    this.router.navigate(['../problems-page']);
+  }
 }

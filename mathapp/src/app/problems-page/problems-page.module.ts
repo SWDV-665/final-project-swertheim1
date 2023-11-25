@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ProblemsPagePageRoutingModule } from './problems-page-routing.module';
+import { ProblemsPageComponent } from './problems-page.page'
 
-import { ProblemsPagePage } from './problems-page.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,7 @@ import { ProblemsPagePage } from './problems-page.page';
     IonicModule,
     ProblemsPagePageRoutingModule
   ],
-  declarations: [ProblemsPagePage]
+  declarations: [ProblemsPageComponent]
 })
+
 export class ProblemsPagePageModule {}
