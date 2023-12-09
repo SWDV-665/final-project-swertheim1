@@ -1,0 +1,72 @@
+:root {
+	--ion-background-color: #B0D235;
+	--ion-background-color-rgb: 176,210,53;
+
+	--ion-text-color: #000000;
+	--ion-text-color-rgb: 0,0,0;
+
+	--ion-color-step-50: #a7c832;
+	--ion-color-step-100: #9ebd30;
+	--ion-color-step-150: #96b32d;
+	--ion-color-step-200: #8da82a;
+	--ion-color-step-250: #849e28;
+	--ion-color-step-300: #7b9325;
+	--ion-color-step-350: #728922;
+	--ion-color-step-400: #6a7e20;
+	--ion-color-step-450: #61741d;
+	--ion-color-step-500: #58691b;
+	--ion-color-step-550: #4f5e18;
+	--ion-color-step-600: #465415;
+	--ion-color-step-650: #3e4a13;
+	--ion-color-step-700: #353f10;
+	--ion-color-step-750: #2c350d;
+	--ion-color-step-800: #232a0b;
+	--ion-color-step-850: #1a2008;
+	--ion-color-step-900: #121505;
+	--ion-color-step-950: #090b03;
+}
+
+
+ion-content {
+   background-color: beige;
+   // background-color: ;
+}
+
+ion-card-content {
+   width: 300px;
+   height: 300px;
+   font-size: 1000%;
+   border-width: 0 0 4px 0;
+   border-color: black;
+   align-self: flex-end;
+   background-color:#61741d
+}
+
+ion-button {
+   width: 100px;
+   height: 100px;
+   text-transform: none;
+   font-size-adjust: var(--ion-dynamic-font);
+   --background: addition-contrast;
+   color: --ion-color-addition;
+   
+   --background-hover: --ion-color-contrast;
+   font-size: 18px; /* Adjust the font size as needed */
+   font-weight: 900;
+  
+}
+
+
+ion-col {
+	ion-button {
+		justify-content: center;
+	}
+}
+
+ .no-margin {
+	font-size: 12rem;
+	text-decoration-thickness: 400%;
+	text-transform: none;
+	align-items: flex-end;
+	margin-bottom: 0, 0, 0, 0; 
+  }

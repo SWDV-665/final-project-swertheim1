@@ -13,9 +13,9 @@ export class TopicsPage implements OnInit {
   ngOnInit() {
   }
 
-  openProblemsPage() {
-    this.router.navigate(['../problems-page']);
-  }
+  // openProblemsPage() {
+  //   this.router.navigate(['../problems-page']);
+  // }
 
   openAdditionPage() {
     this.router.navigate(['../addition']);

@@ -7,3 +7,21 @@ $exponent-primary: #018AC0;
 $ratio-primary: #B575B1;
 $fraction-primary: #00A99D;
 $percent-primary: #F2738A;
+
+:root {
+	--ion-color-addition: #B0D235;
+	--ion-color-addition-rgb: 176,210,53;
+	--ion-color-addition-contrast: #000000;
+	--ion-color-addition-contrast-rgb: 0,0,0;
+	--ion-color-addition-shade: #9bb92f;
+	--ion-color-addition-tint: #b8d749;
+}
+
+.ion-color-addition {
+	--ion-color-base: var(--ion-color-addition);
+	--ion-color-base-rgb: var(--ion-color-addition-rgb);
+	--ion-color-contrast: var(--ion-color-addition-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-addition-contrast-rgb);
+	--ion-color-shade: var(--ion-color-addition-shade);
+	--ion-color-tint: var(--ion-color-addition-tint);
+}

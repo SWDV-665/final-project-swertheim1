@@ -17,14 +17,10 @@ export class ProblemsPageComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
  
   ngOnInit() {
-    // Generate random numbers when the page loads
-    this.randomNumber1 = this.generateRandomNumber(1, 100);
-    this.randomNumber2 = this.generateRandomNumber(101, 200);
+   
   }
 
-  generateRandomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  
 }
 
 
