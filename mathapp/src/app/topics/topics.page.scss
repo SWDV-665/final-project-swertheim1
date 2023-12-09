@@ -19,4 +19,18 @@ ion-button {
    cursor: pointer;
 }
 
+.box {
+  transition-property: color, background-color, width;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+  color: #000000;
+  background-color: #bced91;
+  width: 3em;
+}
+
+.box:hover {
+  color: #FFFFFF;
+  background-color: #4f94e2;
+  width: 3.6em;
+}
 

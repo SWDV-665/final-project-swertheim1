@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
 import { ToastController } from '@ionic/angular';
+import { ResultsDataService } from '../results-data.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class AdditionPage implements OnInit {
     numberOfQuestionsAsked: number = 0      // Counter for questions asked
     totalQuestionsToAsk: number = 3         // Counter for total number of questions to ask
     
-    constructor(private route: ActivatedRoute, private router: Router, private toastController: ToastController) { }
+    constructor(private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) { }
 
     ngOnInit() {
 
@@ -51,7 +52,16 @@ export class AdditionPage implements OnInit {
             this.numberOfAttempts=0;
           
         }
+        // if maximum number of problems have already been generated
         else {
+            const dataToSend = {
+                totalQuestions: this.totalQuestionsToAsk,
+                totalCorrect: this.numberOfCorrectAnswers,
+            };
+
+            this.resultsDataService.setSharedResults(dataToSend)
+            console.log('Data sent to ResultsDataService:', dataToSend)
+
             {
                 this.router.navigate(['../results']);
             }
@@ -64,7 +74,7 @@ export class AdditionPage implements OnInit {
         this.answerList.push(this.answer);
         
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 8; i++) {
             // Generate a new alternate answer in each iteration
             const alternateAnswer = this.generateRandomWholeNumbers(1, 
                     this.answer + this.generateRandomWholeNumbers(this.generateRandomWholeNumbers(1, 9),
@@ -136,19 +146,6 @@ export class AdditionPage implements OnInit {
         
     }
 
-    // trackQuestionsAsked() {
-    //     if (this.numberOfQuestionsAsked < this.totalQuestionsToAsk) {
-    //         this.numberOfQuestionsAsked++
-    //         console.log(`Questions asked: ${this.numberOfQuestionsAsked}`);
-
-    //         // Increment the counter
-    //         this.numberOfQuestionsAsked++;
-    //     } else {
-    //         // If the desired number of questions has been reached, inform the user
-    //         console.log('You have reached the desired number of questions.');
-    //     }
-    //     return this.numberOfQuestionsAsked
-    // }
 
     async presentToast(message: string) {
         const toast = await this.toastController.create({

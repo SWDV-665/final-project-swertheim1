@@ -31,7 +31,7 @@
 
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
-  --ion-font-family: 'Comic Sans MS';
+  --ion-font-family: 'Archivo Black', sans-serif;
   // background-color: beige;
 }
 
@@ -45,27 +45,28 @@ ion-button {
   
 }
 
-// ion-content {
-//   background-color: beige;
-// }
+ion-content {
+  background-color: white;
+  
+}
 
 ion-col {
-  background-color: beige;
-  // border: solid 1px #fff;
-  // text-align: center;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   //  border-bottom: lightgray;
   color: $addition-primary;
+  --ion-font-family: 'Archivo Black', sans-serif;
 }
 
 ion-row {
   margin-top: 10px;
   margin-bottom: 10px;
+  
+  
 }
 
 #equation {
-  font-size: 12rem;
+  font-size: 6rem;
   text-decoration-thickness: 400%;
   text-transform: none;
   align-items: flex-end;
