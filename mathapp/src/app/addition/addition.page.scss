@@ -42,37 +42,42 @@ ion-card-content {
    background-color:#61741d
 }
 
-// ion-button {
-//    width: 100px;
-//    height: 100px;
-//    text-transform: none;
-// //    font-size: 26px;
+ion-button {
+   width: 100px;
+   height: 100px;
+   text-transform: none;
+//    font-size: 26px;
 //    font-size-adjust: var(--ion-dynamic-font);
 //    --background: addition-contrast;
-//    color: --ion-color-addition;
+   color: --ion-color-addition;
    
-//    --background-hover: --ion-color-contrast;
-//    font-size: 18px; /* Adjust the font size as needed */
-//    font-weight: 900;
+   --background-hover: --ion-color-contrast;
+   font-size: 24px; 
+   font-weight: 900;
   
-// }
+}
 
 #answers{
 	justify-content: center;
-	font-size: 40px;
+	font-size: 3em;
+	white-space: nowrap; /* Prevent text from wrapping to the next line */
+	overflow: hidden; /* Hide content that overflows the button */
+	text-overflow: ellipsis; /* Show an ellipsis (...) for overflowed text */
+	// display: inline-block; /* Display as an inline block to take the minimum required width */
+	min-width: 4em;		/* Set a minimum width to ensure the button is visible */
+	// max-width: 75%; /* Set a minimum width to ensure the button is visible */
+	padding: 10px; /* Add padding for better appearance */
+	@media screen and (max-width: 600px) {
+		font-size: 36px;  /* Adjust font size for smaller screens */
+	  }
+	  
 }
 
-// ion-col {
-// 	ion-button {
-// 		justify-content: center;
-// 		font-size: 40px;
-// 	}
-// }
 
  .no-margin {
-	font-size: 12rem;
+	// font-size: 12rem;
 	text-decoration-thickness: 400%;
 	text-transform: none;
 	align-items: flex-end;
-	margin-bottom: 0, 0, 0, 0; 
+	margin: 1em auto 2em; 
   }

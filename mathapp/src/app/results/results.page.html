@@ -11,11 +11,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <h1> Questions asked: {{ sharedResults.totalQuestions }}</h1>
-  <h1> Correct answers: {{ sharedResults.totalQuestions }}</h1>
   
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-align-self-center">
+          <h1> Correct answers: {{ sharedResults.totalQuestions }}</h1>
+      </ion-col>
+      <ion-col class="ion-align-self-center">
+        <h1> Correct answers: {{ sharedResults.totalQuestions }}</h1>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
   
-  <h1><pre> {{ sharedResults | json }} </pre></h1>
 
 
 

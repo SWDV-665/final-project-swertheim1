@@ -16,7 +16,7 @@ export class AdditionPage implements OnInit {
     MIN_ONE: number = 11;
     MAX_ONE: number = 20;
     MIN_TWO: number = 1;
-    MAX_TWO: number = 10;
+    MAX_TWO: number = 100;
 
     randomNumber1: number = 0;
     randomNumber2: number = 0;
@@ -28,16 +28,17 @@ export class AdditionPage implements OnInit {
     numberOfCorrectAnswers: number = 0;     // Counter for correct answers
     numberOfQuestionsAsked: number = 0      // Counter for questions asked
     totalQuestionsToAsk: number = 3         // Counter for total number of questions to ask
+    expression: string = ''
     
     constructor(private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) { }
 
     ngOnInit() {
 
-        this.generateExpression()     
+        this.generateAdditionExpression()     
 
     }
 
-    generateExpression() {
+    generateAdditionExpression() {
         this.answerList = [];
         
         if (this.numberOfQuestionsAsked < this.totalQuestionsToAsk ) {
@@ -45,7 +46,7 @@ export class AdditionPage implements OnInit {
             this.randomNumber2 = this.generateRandomWholeNumbers(this.MIN_TWO, this.MAX_TWO);
             this.answer = this.randomNumber1 + this.randomNumber2;
             //clear answer list when a new expression is generated
-            
+            this.expression = `${this.randomNumber1 } + ${this.randomNumber2}`
             this.generateAlternateAnswers();
             this.shuffleAnswerList();
             this.numberOfQuestionsAsked++;
@@ -124,7 +125,7 @@ export class AdditionPage implements OnInit {
 
             console.log(`Correct answer selected.`);
             this.presentToast(`Correct!` ); 
-            this.generateExpression();
+            this.generateAdditionExpression();
             
 
         } else {
@@ -138,7 +139,7 @@ export class AdditionPage implements OnInit {
            else{
                 // console.log(`Maximum Number of attempts tried. The correct answer is ${this.answer}.`)
                 this.presentToast(`Maximum Number of attempts was tried. The correct answer was ${this.answer}.`);
-                this.generateExpression();
+                this.generateAdditionExpression();
                 
            }
            
@@ -151,7 +152,7 @@ export class AdditionPage implements OnInit {
         const toast = await this.toastController.create({
             message: message,
             duration: 3000,
-            position: "middle",
+            position: "bottom",
         });
 
         await toast.present();
