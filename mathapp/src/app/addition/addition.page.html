@@ -45,7 +45,7 @@
       <ion-col class="ion-align-self-center" *ngFor="let answer of answerList" size="4" >
         <div >
          
-          <ion-button expand="block" (click)="presentToast('middle')" (click)="checkAnswer(answer)" expand="full">{{ answer }}</ion-button>
+          <ion-button id='answers' expand="block" (click)="presentToast('middle')" (click)="checkAnswer(answer)" expand="full">{{ answer }}</ion-button>
         </div>
       </ion-col>
     </ion-row>

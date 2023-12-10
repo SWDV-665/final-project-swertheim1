@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.mathapp.app',
+  appId: 'io.ionic.starter',
   appName: 'mathapp',
   webDir: 'www',
   server: {
