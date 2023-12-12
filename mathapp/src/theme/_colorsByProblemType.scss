@@ -1,0 +1,80 @@
+// primary colors for different calc types
+$addition-primary: #B0D235;
+$subtraction-primary: #3EB3CF;
+$multiplication-primary: #F18524;
+$division-primary: #FDB913;
+$exponent-primary: #018AC0;
+$ratio-primary: #B575B1;
+$fraction-primary: #00A99D;
+$percent-primary: #F2738A;
+
+:root {
+	//addition
+	--ion-color-addition: #B0D235;
+	--ion-color-addition-rgb: 176,210,53;
+	--ion-color-addition-contrast: #000000;
+	--ion-color-addition-contrast-rgb: 0,0,0;
+	--ion-color-addition-shade: #9bb92f;
+	--ion-color-addition-tint: #b8d749;
+
+	//subtraction
+	--ion-color-subtraction: #3EB3CF;
+	--ion-color-subtraction-rgb: 62,179,207;
+	--ion-color-subtraction-contrast: #000000;
+	--ion-color-subtraction-contrast-rgb: 0,0,0;
+	--ion-color-subtraction-shade: #379eb6;
+	--ion-color-subtraction-tint: #51bbd4;
+
+	//multiplication
+	--ion-color-multiplication: #F18524;
+	--ion-color-multiplication-rgb: 241,133,36;
+	--ion-color-multiplication-contrast: #000000;
+	--ion-color-multiplication-contrast-rgb: 0,0,0;
+	--ion-color-multiplication-shade: #d47520;
+	--ion-color-multiplication-tint: #f2913a;
+
+	//division
+	--ion-color-division: #FDB913;
+	--ion-color-division-rgb: 253,185,19;
+	--ion-color-division-contrast: #000000;
+	--ion-color-division-contrast-rgb: 0,0,0;
+	--ion-color-division-shade: #dfa311;
+	--ion-color-division-tint: #fdc02b;
+
+}
+
+.ion-color-addition {
+	--ion-color-base: var(--ion-color-addition);
+	--ion-color-base-rgb: var(--ion-color-addition-rgb);
+	--ion-color-contrast: var(--ion-color-addition-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-addition-contrast-rgb);
+	--ion-color-shade: var(--ion-color-addition-shade);
+	--ion-color-tint: var(--ion-color-addition-tint);
+}
+
+.ion-color-subtraction {
+	--ion-color-base: var(--ion-color-subtraction);
+	--ion-color-base-rgb: var(--ion-color-subtraction-rgb);
+	--ion-color-contrast: var(--ion-color-subtraction-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-subtraction-contrast-rgb);
+	--ion-color-shade: var(--ion-color-subtraction-shade);
+	--ion-color-tint: var(--ion-color-subtraction-tint);
+}
+
+.ion-color-multiplication {
+	--ion-color-base: var(--ion-color-multiplication);
+	--ion-color-base-rgb: var(--ion-color-multiplication-rgb);
+	--ion-color-contrast: var(--ion-color-multiplication-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-multiplication-contrast-rgb);
+	--ion-color-shade: var(--ion-color-multiplication-shade);
+	--ion-color-tint: var(--ion-color-multiplication-tint);
+}
+
+.ion-color-division {
+	--ion-color-base: var(--ion-color-division);
+	--ion-color-base-rgb: var(--ion-color-division-rgb);
+	--ion-color-contrast: var(--ion-color-division-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-division-contrast-rgb);
+	--ion-color-shade: var(--ion-color-division-shade);
+	--ion-color-tint: var(--ion-color-division-tint);
+}

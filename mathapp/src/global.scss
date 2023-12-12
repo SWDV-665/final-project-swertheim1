@@ -24,10 +24,7 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
-@import "./theme/_variables";
-
-
-
+@import './theme/colorsByProblemType';
 
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
@@ -39,10 +36,7 @@ ion-button {
   text-transform: none;
   font-size-adjust: var(--ion-dynamic-font);
   --background: beige;
-  --color: $addition-primary;
-  
-
-  
+  --color: $addition-primary; 
 }
 
 ion-content {
@@ -79,5 +73,6 @@ ion-row {
   text-align: flex-start;
 }
 
-
-
+.addition {
+  color: --ion-color-addition;
+}

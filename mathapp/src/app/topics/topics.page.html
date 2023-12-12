@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Math Topics Page</ion-title>
+    <ion-title [style.color]="getColorForProblemType(selectedProblemType)"><h1> {{ selectedProblemType }} Topics Page </h1></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,57 +11,35 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card class='box' type="button" id="calc-type" text-capitalize="false" (click)="openAdditionPage()">
-          <ion-card-header>
-            <ion-card-title>Whole Numbers</ion-card-title>
-            <ion-card-subtitle>0, 1, 2, 3, etc.</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>Whole Numbers: 0, 1, 2, 3, etc.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+   
+  <ion-accordion-group #accordionGroup>
+    <ion-accordion *ngFor="let problemType of problemTypes">
+      <ion-item slot="header" color="light">
+        <ion-label [style.color]="getColorForProblemType(selectedProblemType)"><h2> {{ problemType.title }}</h2></ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content" >
+        <ion-list >
+          <ion-item [style.color]="getColorForProblemType(selectedProblemType)">
+            <ion-label>Purpose: {{ problemType.description }} </ion-label>
+          </ion-item>
+          
+            <ion-item>
+            <ion-note>Information: {{ problemType.information }}</ion-note>
+            </ion-item>
 
-      <ion-col>
-        <ion-card type="button" id="calc-type" text-capitalize="false" (click)="openAdditionPage()">
-          <ion-card-header>
-            <ion-card-title>Decimal Number</ion-card-title>
-            <ion-card-subtitle>0.1, 1.1, 0.2, 33.15, etc.</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>Decimals: 0.1, 1.1, 0.2, 33.15, etc.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+            <ion-item>
+              <ion-button id="problemType.title" (click)="handleButtonClick(problemType.title)">Practice {{selectedProblemType }} with {{ problemType.title }} </ion-button>
+            </ion-item>
+          
+        </ion-list>
+      </div>
+      
+    </ion-accordion>
+  
+  </ion-accordion-group>
 
-    <ion-row>
-      <ion-col>
-        <ion-card type="button" id="calc-type" text-capitalize="false" (click)="openAdditionPage()">
-          <!-- <img alt="Fractions" src="../../assets/images/fraction2@300x.png" /> -->
-          <ion-card-header>
-            <ion-card-title>Fractions Number</ion-card-title>
-            <ion-card-subtitle>1/1, 1/2, 3/4, 5/7, etc.</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>Fractions: 0.1, 1.1, 0.2, 33.15, etc.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-card-header type="button" id="calc-type" text-capitalize="false" (click)="openAdditionPage()">
-            <ion-card-title>Equations</ion-card-title>
-            <ion-card-subtitle>7 = x + 3, 22 = x + 15 etc.</ion-card-subtitle>
-          </ion-card-header>
-    
-          <ion-card-content>Equations: 7 = x + 3, 22 = x + 15 etc.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
+  
 
 
 

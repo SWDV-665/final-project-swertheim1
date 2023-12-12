@@ -1,7 +1,4 @@
-@import '../../theme/_variables';
-
-
-
+@import '../../theme/colorsByProblemType';
 
 ion-card {
     text-transform: none; /* or revert to default */
@@ -12,8 +9,6 @@ ion-card {
     cursor: pointer;
     background-color: $addition-primary;
   }
-
-
 
 ion-button {
    cursor: pointer;

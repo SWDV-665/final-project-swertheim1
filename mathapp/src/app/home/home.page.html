@@ -1,7 +1,7 @@
 <ion-header >
   <ion-toolbar>
     <ion-title>
-      Math Practice
+      <h1>Math Practice</h1>
     </ion-title>
   </ion-toolbar>
   <ion-back-button> Back </ion-back-button>
@@ -18,7 +18,7 @@
     <ion-row >
       <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
-          <a id="add" (click)="openTopicsPage()">
+          <a id="add" (click)="openTopicsPage('Addition')">
             <img src="../../assets/images/plus3@300x.png"/>
           </a>
           <h2>Addition</h2>
@@ -26,7 +26,7 @@
       </ion-col>
       <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
-          <a id="sub" (click)="openTopicsPage()">
+          <a id="sub" (click)="openTopicsPage('Subtraction')">
             <img src="../../assets/images/minus3@300x.png" />
           </a>
           <h2>Subtraction</h2>
@@ -40,7 +40,7 @@
     <ion-row>
       <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
-          <a id="times" (click)="openTopicsPage()">
+          <a id="times" (click)="openTopicsPage('Multiplication')">
             <img src="../../assets/images/times3@300x.png" />
           </a>
           <h2>Multiplication</h2>
@@ -49,7 +49,7 @@
     
       <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
-          <a id="divide" (click)="openTopicsPage()">
+          <a id="divide" (click)="openTopicsPage('Division')">
             <img src="../../assets/images/divide3@300x.png" />
           </a>
           <h2>Division</h2>
@@ -62,7 +62,7 @@
     <ion-row>
       <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
-          <a id="percent" (click)="openTopicsPage()">
+          <a id="percent" (click)="openTopicsPage('Percent')">
             <img src="../../assets/images/percent3@300x.png" />
           </a>
           <h2>Percent</h2>
@@ -71,7 +71,7 @@
     
       <ion-col size=6 class="d-flex ion-justify-content-center">
         <button>
-          <a id="ratio" (click)="openTopicsPage()">
+          <a id="ratio" (click)="openTopicsPage('Ratio')">
             <img src="../../assets/images/ratio3@300x.png" />
           </a>
           <h2>Ratios</h2>

@@ -10,11 +10,10 @@ export class HomePage {
 
   constructor(private router: Router) {}
 
-
-  // navigateToTopicsPage() {
-  //   this.router.navigate(['/topics']);
-  openTopicsPage() {
-    this.router.navigateByUrl('/topics');
+  openTopicsPage(problemType: any) {
+    console.log('opening ', ' /', problemType, ' topics');
+      // Navigate to the 'topics' route with the selected problem type as a parameter
+     this.router.navigate(['/topics', problemType]);
   }
 }
 
