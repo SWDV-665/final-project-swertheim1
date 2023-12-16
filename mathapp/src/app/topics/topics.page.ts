@@ -47,7 +47,7 @@ export class TopicsPage {
       console.log('Constructed pageName:', pageName);
 
       // Navigate to the constructed pageName
-      console.log(`Navigate to the constructed page with the following: problem type: ${problemType}, ${subtopic}`)
+      console.log(`Navigate to the constructed page with the following: /${pageName}`)
       this.router.navigate([`/${pageName}`], { state: { problemType, subtopic } });
     }
 
@@ -77,7 +77,7 @@ export class TopicsPage {
           this.loadProblems(problemType, subtopic)
           break;
         }
-        case 'positive and negative whole numbers': {
+        case 'integers': {
           console.log('subtopic is  ', subtopic)
           this.loadProblems(problemType, subtopic)
           break;

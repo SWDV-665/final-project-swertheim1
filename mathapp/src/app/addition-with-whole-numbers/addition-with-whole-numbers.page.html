@@ -1,4 +1,4 @@
-<!-- <ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       <h3>Addition with Whole Numbers</h3>
@@ -13,55 +13,39 @@
         <h3>Addition with Whole Numbers</h3>
       </ion-title>
     </ion-toolbar>
-  </ion-header> -->
-  <ion-menu contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Addition with Whole Numbers</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">This is the menu content.</ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    
-  </div>
-  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. 
-  <ion-grid [fixed]="true">
-    <!-- first number -->
-    <ion-row >
-      <ion-col>
-        <div id="equation">{{ expression }} </div>
-      </ion-col>
-    </ion-row>
+  </ion-header>
 
 
 
-    <!-- second row -->
-    <ion-row>
-      <ion-col>
-        <p>What is the sum of {{ randomNumber1 }} and {{ randomNumber2 }}?</p>
-      </ion-col>
-    </ion-row>
-    
-    <!-- third row -->
-    <ion-row class="no-margin"  >  
-      <ion-col size="4" size-lg="4" size-xl="4" class="ion-align-self-center" *ngFor="let answer of answerList" >
-        <div >
-         
-          <ion-button id='answers' expand="block" (click)="checkAnswer(answer)" expand="full">{{ answer }}</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
+    <ion-grid [fixed]="true">
+      <!-- first number -->
+      <ion-row>
+        <ion-col>
+          <div id="equation">{{ expression }} </div>
+        </ion-col>
+      </ion-row>
 
 
-  </ion-grid>
 
-</ion-content>
+      <!-- second row -->
+      <ion-row>
+        <ion-col>
+          <p>What is the sum of {{ randomNumber1 }} and {{ randomNumber2 }}?</p>
+        </ion-col>
+      </ion-row>
+
+      <!-- third row -->
+      <ion-row class="no-margin">
+        <ion-col size="4" size-lg="4" size-xl="4" class="ion-align-self-center" *ngFor="let answer of answerList">
+          <div>
+
+            <ion-button id='answers' expand="block" (click)="checkAnswer(answer)" expand="full">{{ answer
+              }}</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+
+  </ion-content>

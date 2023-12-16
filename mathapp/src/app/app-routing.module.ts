@@ -36,20 +36,19 @@ const routes: Routes = [
     path: 'addition-with-decimals',
     loadChildren: () => import('./addition-with-decimals/addition-with-decimals.module').then( m => m.AdditionWithDecimalsPageModule)
   },
-
+  {
+    path: 'addition-with-fractions',
+    loadChildren: () => import('./addition-with-fractions/addition-with-fractions.module').then( m => m.AdditionWithFractionsPageModule)
+  },
+  {
+    path: 'addition-with-integers',
+    loadChildren: () => import('./addition-with-integers/addition-with-integers.module').then( m => m.AdditionWithIntegersPageModule)
+  },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'addition-with-fractions',
-    loadChildren: () => import('./addition-with-fractions/addition-with-fractions.module').then( m => m.AdditionWithFractionsPageModule)
-  },  {
-    path: 'addition-with-integers',
-    loadChildren: () => import('./addition-with-integers/addition-with-integers.module').then( m => m.AdditionWithIntegersPageModule)
-  },
-
 
 
 ];
