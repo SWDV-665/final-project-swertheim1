@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TopicsPage } from './topics/topics.page';
-import { AdditionPage } from './addition/addition.page';
+
 
 
 const routes: Routes = [
@@ -9,11 +9,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+
   {
     path: 'topics/:problemType',
     loadChildren: () => import('./topics/topics.module').then((m) => m.TopicsPageModule)
@@ -22,10 +18,7 @@ const routes: Routes = [
     path: 'problems-page',
     loadChildren: () => import('./problems-page/problems-page.module').then( m => m.ProblemsPagePageModule)
   },
-  {
-    path: 'addition',
-    loadChildren: () => import('./addition/addition.module').then( m => m.AdditionPageModule)
-  },
+
   {
     path: 'subtraction',
     loadChildren: () => import('./subtraction/subtraction.module').then( m => m.SubtractionPageModule)
@@ -34,7 +27,30 @@ const routes: Routes = [
     path: 'results',
     loadChildren: () => import('./results/results.module').then( m => m.ResultsPageModule)
   },
- 
+  {
+    path: 'addition-with-whole-numbers',
+    loadChildren: () => import('./addition-with-whole-numbers/addition-with-whole-numbers.module').then( m => m.AdditionWithWholeNumbersPageModule)
+  },
+
+  {
+    path: 'addition-with-decimals',
+    loadChildren: () => import('./addition-with-decimals/addition-with-decimals.module').then( m => m.AdditionWithDecimalsPageModule)
+  },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'addition-with-fractions',
+    loadChildren: () => import('./addition-with-fractions/addition-with-fractions.module').then( m => m.AdditionWithFractionsPageModule)
+  },  {
+    path: 'addition-with-integers',
+    loadChildren: () => import('./addition-with-integers/addition-with-integers.module').then( m => m.AdditionWithIntegersPageModule)
+  },
+
+
 
 ];
 

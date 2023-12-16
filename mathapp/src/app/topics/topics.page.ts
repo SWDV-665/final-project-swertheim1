@@ -1,76 +1,100 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
-
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-topics',
   templateUrl: './topics.page.html',
   styleUrls: ['./topics.page.scss'],
 })
-export class TopicsPage  {
-  selectedProblemType = ''; 
-  problemTypes: any[] = [];
+export class TopicsPage {
+  selectedProblemType: string = '';
+  problemSubtopics: any[] = [];
+  subTopics: string[] = [];
   
-  constructor(private router: Router, private route: ActivatedRoute) { 
-      // Retrieve the selected problem type from the URL parameters
-      this.route.paramMap.subscribe((params: any) => {
-        this.selectedProblemType = params.get('problemType');
-        this.fetchSubtopics();
-        console.log('Selected Problem Type:', this.selectedProblemType);
-      });
+
+  constructor(private router: Router, private route: ActivatedRoute, private ngZone: NgZone) {
+
   }
 
   ngOnInit() {
+    // Retrieve the selected problem type from the URL parameters
+    this.route.paramMap.subscribe((params: any) => {
+      this.selectedProblemType = params.get('problemType');
+      this.subTopics = params.get('subtopics') || [];
+      this.fetchSubtopics();
+
+      console.log('Selected Problem Type on Topics Page:', this.selectedProblemType);
+      console.log('List of subTopics on Topics Page', this.subTopics)
+    });
   }
 
-  loadProblems(problemType: string) {
-    // Navigate to the problems page, passing the selected problem type as a parameter
-    console.log('the current problem type is: ', problemType)
-    
+  loadProblems(problemType: string, subtopic: string) {
+    console.log('loadProblems function accessed')
+    // Ensure problemType is a valid string before proceeding
+    if (problemType && typeof problemType === 'string') {
+
+      // Navigate to the problems page, passing the selected problem type as a parameter
+      console.log('the current problem type is: ', problemType);
+
+      // Convert subtopic to lowercase and replace spaces with hyphens
+      const formattedSubtopic = subtopic.toLowerCase().replace(/\s/g, '-');
+      console.log('formatted subtopic', formattedSubtopic)
+
+      // Construct the page name using the problemType and formatted subtopic
+      const pageName = `${problemType.toLowerCase()}-with-${formattedSubtopic}`;
+      console.log('Constructed pageName:', pageName);
+
+      // Navigate to the constructed pageName
+      console.log(`Navigate to the constructed page with the following: problem type: ${problemType}, ${subtopic}`)
+      this.router.navigate([`/${pageName}`], { state: { problemType, subtopic } });
+    }
+
   }
-  
-  
-  handleButtonClick(problemType: string): void {
-    
-    switch (problemType.toLowerCase()) {
-      case 'whole numbers': {
-        console.log('problems-page is ', problemType)
-        this.router.navigate(['/problems-page', { problemType }]);
-        break;
-      }
-      case 'decimals': {
-          console.log('problems-page is ', problemType)
-          this.router.navigate(['/problems-page', { problemType }]);
+
+  handleButtonClick(problemType: string, subtopic: string): void {
+    this.ngZone.run(() => {
+      console.log(`handleButtonClick called with: ${problemType} and a subtopic of ${subtopic}`);
+      switch (subtopic.toLowerCase()) {
+        case 'whole numbers': {
+          console.log('subtopic is  ', subtopic)
+          this.loadProblems(problemType, subtopic)
           break;
-      }
-      case 'fractions': {
-        console.log('problems-page is ', problemType)
-        this.router.navigate(['/problems-page', { problemType }]);
+        }
+        case 'decimals': {
+          console.log('subtopic is  ', subtopic)
+          this.loadProblems(problemType, subtopic)
           break;
-      }
-      case 'equations': {
-        console.log('problems-page is ', problemType)
-        this.router.navigate(['/problems-page', { problemType }]);
+        }
+        case 'fractions': {
+          console.log('subtopic is  ', subtopic)
+          this.loadProblems(problemType, subtopic)
           break;
-      }
-      case 'positive and negative whole numbers': {
-        console.log('problems-page is ', problemType)
-        this.router.navigate(['/problems-page', { problemType }]);
+        }
+        case 'equations': {
+          console.log('subtopic is  ', subtopic)
+          this.loadProblems(problemType, subtopic)
           break;
-      }
-      default: {
+        }
+        case 'positive and negative whole numbers': {
+          console.log('subtopic is  ', subtopic)
+          this.loadProblems(problemType, subtopic)
+          break;
+        }
+        default: {
           'no option available'
           break;
+        }
       }
-    }
+    });
   }
-  
-  openSubTopicsPage(subtopics: any) {
-    // Navigate to the subtopics page based on the list of possible problemTypes
-    console.log('openSubTopicsPage', subtopics)
-    this.router.navigate(['./topic/', subtopics]);
-  }
+
+  // openSubTopicsPage(subtopics: any) {
+  //   // Navigate to the subtopics page based on the list of possible problemTypes
+  //   console.log('openSubTopicsPage', subtopics)
+  //   this.router.navigate(['./topic/', subtopics]);
+  // }
 
   problemType: string = '';
 
@@ -79,24 +103,24 @@ export class TopicsPage  {
 
     switch (type.toLowerCase()) {
       case 'addition':
-        
-        return 'var(--ion-color-addition)';
-      
-        case 'subtraction':
-        return 'var(--ion-color-subtraction)';
-      
-        case 'multiplication':
-        return 'var(--ion-color-multiplication)';
-        
-        case 'division':
-        return 'var(--ion-color-division)';
-        
-        case 'percent':
-        return 'var(--ion-color-percent)';
 
-        case 'ratio':
-        return 'var(--ion-color-ratio)';
-      
+        return 'var(--ion-color-addition)';
+
+      case 'subtraction':
+        return 'var(--ion-color-subtraction)';
+
+      case 'multiplication':
+        return 'var(--ion-color-multiplication)';
+
+      case 'division':
+        return 'var(--ion-color-division)';
+
+      // case 'percent':
+      //   return 'var(--ion-color-percent)';
+
+      // case 'ratio':
+      //   return 'var(--ion-color-ratio)';
+
       default:
         return 'blue'; // Default color if problemType doesn't match any case
     }
@@ -106,7 +130,7 @@ export class TopicsPage  {
     console.log('Fetching problem types for', this.selectedProblemType);
 
     if (this.selectedProblemType === 'Addition') {
-      this.problemTypes = this.problemTypes = [
+      this.problemSubtopics = this.problemSubtopics = [
         {
           title: 'Whole Numbers',
           description: 'Demonstrate fluency with addition of whole numbers.',
@@ -123,21 +147,16 @@ export class TopicsPage  {
           information: 'more information on the topic'
         },
         {
-          title: 'Equations',
-          description: 'Demonstrate fluency with addition of whole numbers in equations.',
-          information: ' more information on the topic'
-        },
-        {
-          title: 'Positive and Negative Whole Numbers',
+          title: 'Integers',
           description: 'Demonstrate fluency with addition of both positive and negative whole numbers in equations.',
           information: ' more information on the topic'
 
         },
       ];
-      console.log('printing problem types ', this.problemTypes)
+      console.log('printing problem subtopics ', this.problemSubtopics)
     }
     else if (this.selectedProblemType === 'Subtraction') {
-      this.problemTypes = this.problemTypes = [
+      this.problemSubtopics = this.problemSubtopics = [
         {
           title: 'Whole Numbers',
           description: 'Demonstrate fluency with subtraction of whole numbers.',
@@ -154,21 +173,16 @@ export class TopicsPage  {
           information: ' more information on the topic'
         },
         {
-          title: 'Equations',
-          description: 'Demonstrate fluency with the ability to solve subtraction equations that involve whole numbers.',
-          information: ' more information on the topic'
-        },
-        {
-          title: 'Positive and Negative Whole Numbers',
+          title: 'Integers',
           description: 'Demonstrate fluency with subtraction of both positive and negative whole numbers in equations.',
           information: ' more information on the topic'
 
         },
       ];
-      console.log('printing problem types ', this.problemTypes)
+      console.log('printing problem subtopics ', this.problemSubtopics)
     }
     else if (this.selectedProblemType === 'Multiplication') {
-      this.problemTypes = [
+      this.problemSubtopics = [
         {
           title: 'Whole Numbers',
           description: 'Demonstrate fluency with multiplication of whole numbers.',
@@ -185,20 +199,16 @@ export class TopicsPage  {
           information: ' more information on the topic'
         },
         {
-          title: 'Equations',
-          description: 'Demonstrate fluency with the ability to solve multiplication equations that involve whole numbers.',
-          information: ' more information on the topic'
-        },
-        {
-          title: 'Positive and Negative Whole Numbers',
+          title: 'Integers',
           description: 'Demonstrate fluency with multiplication of both positive and negative whole numbers.',
           information: ' more information on the topic'
 
         },
       ];
+      console.log('printing problem subtopics ', this.problemSubtopics)
     }
     else if (this.selectedProblemType === 'Division') {
-      this.problemTypes = [
+      this.problemSubtopics = [
         {
           title: 'Whole Numbers',
           description: 'Demonstrate fluency with division of whole numbers.',
@@ -215,17 +225,13 @@ export class TopicsPage  {
           information: ' more information on the topic'
         },
         {
-          title: 'Equations',
-          description: 'Demonstrate fluency with the ability to solve division equations that involve whole numbers.',
-          information: ' more information on the topic'
-        },
-        {
-          title: 'Positive and Negative Whole Numbers',
+          title: 'Integers',
           description: 'Demonstrate fluency with division of both positive and negative whole numbers.',
           information: ' more information on the topic'
 
         },
       ];
+      console.log('printing problem subtopics ', this.problemSubtopics)
     }
   }
 

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdditionPage } from './addition.page';
+
+import { AdditionWithDecimalsPage } from './addition-with-decimals.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdditionPage
+    component: AdditionWithDecimalsPage
   }
 ];
 
@@ -13,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdditionPageRoutingModule {}
+export class AdditionWithDecimalsPageRoutingModule {}

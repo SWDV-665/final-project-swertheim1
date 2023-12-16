@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultsDataService } from '../results-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -7,13 +8,21 @@ import { ResultsDataService } from '../results-data.service';
   styleUrls: ['./results.page.scss'],
 })
 export class ResultsPage implements OnInit {
+
   sharedResults: any;
 
-  constructor(private resultsDataService: ResultsDataService) { }
+  constructor(private resultsDataService: ResultsDataService, private router: Router) { }
 
   ngOnInit() {
     this.sharedResults = this.resultsDataService.getSharedResults();
     console.log('Shared Results in ResultsPage:', this.sharedResults);
   }
 
+  handleButtonClick() {
+    this.router.navigate([`/home`]);;
+    }
+
 }
+
+  
+

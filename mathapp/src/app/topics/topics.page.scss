@@ -1,17 +1,31 @@
 @import '../../theme/colorsByProblemType';
 
+ion-grid  {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: lightgray;
+}
+
+ion-col {
+  padding-bottom: 25px;
+}
+
 ion-card {
-    text-transform: none; /* or revert to default */
-    width: 300px;
-    height: 300px;
-    font-size: 88px;
-    border-radius: 25px;
-    cursor: pointer;
-    background-color: $addition-primary;
-  }
+  text-transform: none;
+  /* or revert to default */
+  width: 300px;
+  height: 300px;
+  font-size: 88px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: $addition-primary;
+}
 
 ion-button {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .box {
@@ -29,3 +43,52 @@ ion-button {
   width: 3.6em;
 }
 
+.image img {
+  width: 500px;
+  height: 500px;
+  // border-radius: 50px;
+  object-fit: cover; /* Maintain aspect ratio without stretching */
+  padding: 20px;
+}
+
+.image {
+  position: relative;
+  border-radius: 50px;
+  // padding: 20px;
+}
+
+.image figcaption {
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 35%;
+  color: white;
+  border-radius: 50px;
+  padding: 20px;
+}
+
+.column-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.column {
+  width: calc(30% - 30px);   
+  // margin-bottom: 20px;      
+  margin-left: 20px;    
+
+  @media (max-width: 980px) {
+    width: calc(25% - 20px);      
+  }
+
+  @media (max-width: 768px) {
+    width: calc(25% - 20px);      
+  }
+
+  @media (max-width: 480px) {
+    width: 100%; 
+  }
+}
