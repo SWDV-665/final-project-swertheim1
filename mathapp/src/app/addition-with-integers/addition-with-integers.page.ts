@@ -13,9 +13,9 @@ import { HapticsService } from '../service/haptics.service';
 export class AdditionWithIntegersPage implements OnInit {
 
   MIN_ONE: number = -10;
-    MAX_ONE: number = 20;
-    MIN_TWO: number = -20;
-    MAX_TWO: number = 5;
+    MAX_ONE: number = 10;
+    MIN_TWO: number = -10;
+    MAX_TWO: number = 10;
 
     randomNumber1: number = 0;
     randomNumber2: number = 0;

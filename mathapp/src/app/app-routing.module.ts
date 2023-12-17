@@ -6,6 +6,11 @@ import { TopicsPage } from './topics/topics.page';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
@@ -30,19 +35,17 @@ const routes: Routes = [
     path: 'addition-with-decimals',
     loadChildren: () => import('./addition-with-decimals/addition-with-decimals.module').then( m => m.AdditionWithDecimalsPageModule)
   },
-  {
-    path: 'addition-with-fractions',
-    loadChildren: () => import('./addition-with-fractions/addition-with-fractions.module').then( m => m.AdditionWithFractionsPageModule)
-  },
+
   {
     path: 'addition-with-integers',
     loadChildren: () => import('./addition-with-integers/addition-with-integers.module').then( m => m.AdditionWithIntegersPageModule)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'addition-with-fractions',
+    loadChildren: () => import('./addition-with-fractions/addition-with-fractions.module').then( m => m.AdditionWithFractionsPageModule)
   },
+
+  
   {
     path: 'subtraction-with-whole-numbers',
     loadChildren: () => import('./subtraction-with-whole-numbers/subtraction-with-whole-numbers.module').then( m => m.SubtractionWithWholeNumbersPageModule)
@@ -50,7 +53,8 @@ const routes: Routes = [
   {
     path: 'subtraction-with-decimals',
     loadChildren: () => import('./subtraction-with-decimals/subtraction-with-decimals.module').then( m => m.SubtractionWithDecimalsPageModule)
-  },  {
+  },
+  {
     path: 'subtraction-with-integers',
     loadChildren: () => import('./subtraction-with-integers/subtraction-with-integers.module').then( m => m.SubtractionWithIntegersPageModule)
   },
@@ -74,6 +78,7 @@ const routes: Routes = [
     path: 'multiplication-with-decimals',
     loadChildren: () => import('./multiplication-with-decimals/multiplication-with-decimals.module').then( m => m.MultiplicationWithDecimalsPageModule)
   },
+
 
 
 

@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdditionWithFractionsPage } from './addition-with-fractions.page';
 
-
-
 const routes: Routes = [
   {
     path: '',

@@ -68,7 +68,6 @@ export class TopicsPage {
       console.log(`Navigate to the constructed page with the following: /${pageName}`)
       this.router.navigate([`/${pageName}`], { state: { problemType, subtopic } });
     }
-
   }
 
   handleButtonClick(problemType: string, subtopic: string): void {
@@ -92,11 +91,6 @@ export class TopicsPage {
           break;
         }
         case 'fractions': {
-          console.log('subtopic is  ', subtopic)
-          this.loadProblems(problemType, subtopic)
-          break;
-        }
-        case 'equations': {
           console.log('subtopic is  ', subtopic)
           this.loadProblems(problemType, subtopic)
           break;
