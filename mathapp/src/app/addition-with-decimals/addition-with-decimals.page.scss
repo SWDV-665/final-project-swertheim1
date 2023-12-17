@@ -1,13 +1,12 @@
-.addition {
-    color: --ion-color-addition;
-}
+@import '../../theme/shared-addition.scss';
+
 
 #answers {
 
     font-size: 3em;
     content: "";
     display: block; 
-    // padding-bottom: 100%;
+    /* padding-bottom: 100%;*/
     white-space: nowrap;
     /* Prevent text from wrapping to the next line */
     overflow: hidden;

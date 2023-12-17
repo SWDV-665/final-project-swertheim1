@@ -4,7 +4,8 @@ import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
 import { ResultsDataService } from '../results-data.service';
 import { HapticsService } from '../service/haptics.service';
-import * as fractional from 'fractional';
+// import * as fractional from 'fractional';
+import fractional from "fractional";
 
 @Component({
   selector: 'app-addition-with-fractions',

@@ -18,11 +18,6 @@ const routes: Routes = [
     path: 'problems-page',
     loadChildren: () => import('./problems-page/problems-page.module').then( m => m.ProblemsPagePageModule)
   },
-
-  {
-    path: 'subtraction',
-    loadChildren: () => import('./subtraction/subtraction.module').then( m => m.SubtractionPageModule)
-  },
   {
     path: 'results',
     loadChildren: () => import('./results/results.module').then( m => m.ResultsPageModule)
@@ -31,7 +26,6 @@ const routes: Routes = [
     path: 'addition-with-whole-numbers',
     loadChildren: () => import('./addition-with-whole-numbers/addition-with-whole-numbers.module').then( m => m.AdditionWithWholeNumbersPageModule)
   },
-
   {
     path: 'addition-with-decimals',
     loadChildren: () => import('./addition-with-decimals/addition-with-decimals.module').then( m => m.AdditionWithDecimalsPageModule)
@@ -48,10 +42,39 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'subtraction-with-whole-numbers',
     loadChildren: () => import('./subtraction-with-whole-numbers/subtraction-with-whole-numbers.module').then( m => m.SubtractionWithWholeNumbersPageModule)
   },
+  {
+    path: 'subtraction-with-decimals',
+    loadChildren: () => import('./subtraction-with-decimals/subtraction-with-decimals.module').then( m => m.SubtractionWithDecimalsPageModule)
+  },  {
+    path: 'subtraction-with-integers',
+    loadChildren: () => import('./subtraction-with-integers/subtraction-with-integers.module').then( m => m.SubtractionWithIntegersPageModule)
+  },
+  {
+    path: 'subtraction-with-fractions',
+    loadChildren: () => import('./subtraction-with-fractions/subtraction-with-fractions.module').then( m => m.SubtractionWithFractionsPageModule)
+  },
+  {
+    path: 'multiplication-with-fractions',
+    loadChildren: () => import('./multiplication-with-fractions/multiplication-with-fractions.module').then( m => m.MultiplicationWithFractionsPageModule)
+  },
+  {
+    path: 'multiplication-with-whole-numbers',
+    loadChildren: () => import('./multiplication-with-whole-numbers/multiplication-with-whole-numbers.module').then( m => m.MultiplicationWithWholeNumbersPageModule)
+  },
+  {
+    path: 'multiplication-with-integers',
+    loadChildren: () => import('./multiplication-with-integers/multiplication-with-integers.module').then( m => m.MultiplicationWithIntegersPageModule)
+  },
+  {
+    path: 'multiplication-with-decimals',
+    loadChildren: () => import('./multiplication-with-decimals/multiplication-with-decimals.module').then( m => m.MultiplicationWithDecimalsPageModule)
+  },
+
 
 
 

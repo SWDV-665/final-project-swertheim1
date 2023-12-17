@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SubtractionPage } from './subtraction.page';
+import { SubtractionWithFractionsPage } from './subtraction-with-fractions.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SubtractionPage
+    component: SubtractionWithFractionsPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SubtractionPageRoutingModule {}
+export class SubtractionWithFractionsPageRoutingModule {}

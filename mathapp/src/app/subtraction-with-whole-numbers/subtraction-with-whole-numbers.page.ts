@@ -8,7 +8,7 @@ import { HapticsService } from '../service/haptics.service';
 @Component({
   selector: 'app-subtraction-with-whole-numbers',
   templateUrl: './subtraction-with-whole-numbers.page.html',
-  styleUrls: ['./subtraction-with-whole-numbers.page.scss'],
+  styleUrls: ['./subtraction-with-whole-numbers.page.scss', '../../theme/shared-subtraction.scss'],
 })
 export class SubtractionWithWholeNumbersPage implements OnInit {
 

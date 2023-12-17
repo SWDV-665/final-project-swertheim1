@@ -1,0 +1,57 @@
+@import './colorsByProblemType.scss';
+
+
+#answers {
+  background-color: white;
+  font-size: 3em;
+  display: block;
+
+/* Prevent text from wrapping to the next line */
+white-space: nowrap;
+
+/* Hide content that overflows the button */
+overflow: hidden;
+
+/* Show an ellipsis (...) for overflowed text */
+text-overflow: ellipsis;
+
+/* Display as an inline block to take the minimum required width */
+display: inline-block;
+
+/* Set a minimum width to ensure the button is visible */
+height: 100px;
+
+/* Set a minimum width to ensure the button is visible */
+width: 200px;
+
+padding: 14px 28px;
+
+/* Add padding for better appearance */
+@media screen and (max-width: 600px) {
+    font-size: 36px;
+    /* Adjust font size for smaller screens */
+  }
+}
+
+ion-title {
+  color: var(--ion-color-subtraction);
+}
+
+ion-button {
+  --background: var(--ion-color-subtraction);
+  --color: white;
+
+}
+
+ion-header {
+  color: var(--ion-color-subtraction);
+
+}
+
+#equation {
+  color: var(--ion-color-subtraction);
+}
+
+p {
+  color: var(--ion-color-subtraction);
+}

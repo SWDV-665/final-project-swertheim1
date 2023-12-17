@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
 import { NgZone } from '@angular/core';
 
+
 @Component({
   selector: 'app-topics',
   templateUrl: './topics.page.html',
@@ -12,6 +13,8 @@ export class TopicsPage {
   selectedProblemType: string = '';
   problemSubtopics: any[] = [];
   subTopics: string[] = [];
+  problemType: string = '';
+  imagePath: string = 'defaultImagePath';
   
 
   constructor(private router: Router, private route: ActivatedRoute, private ngZone: NgZone) {
@@ -23,11 +26,26 @@ export class TopicsPage {
     this.route.paramMap.subscribe((params: any) => {
       this.selectedProblemType = params.get('problemType');
       this.subTopics = params.get('subtopics') || [];
+      
+      // retrieve images from parameter query
+      
+      // this.imagePath = this.route.snapshot.queryParamMap.get('imagePath') || 'defaultImagePath';
+      this.imagePath = this.route.snapshot.queryParamMap.get('imagePath') || '';
+
+      
       this.fetchSubtopics();
 
       console.log('Selected Problem Type on Topics Page:', this.selectedProblemType);
       console.log('List of subTopics on Topics Page', this.subTopics)
+      // console.log('imagePage: ', imagePath)
     });
+  }
+
+  getImagePath(problemType: string): string {
+    problemType = problemType.toLowerCase();
+    const imagePath = `assets/images/${problemType}.png`;
+    console.log('get image path', imagePath);
+    return `assets/images/${problemType}.png`;
   }
 
   loadProblems(problemType: string, subtopic: string) {
@@ -56,10 +74,16 @@ export class TopicsPage {
   handleButtonClick(problemType: string, subtopic: string): void {
     this.ngZone.run(() => {
       console.log(`handleButtonClick called with: ${problemType} and a subtopic of ${subtopic}`);
+
+      this.imagePath = this.getImagePath(problemType);
+
+      
+      console.log('image path: ', this.imagePath);
       switch (subtopic.toLowerCase()) {
         case 'whole numbers': {
           console.log('subtopic is  ', subtopic)
           this.loadProblems(problemType, subtopic)
+          
           break;
         }
         case 'decimals': {
@@ -90,20 +114,11 @@ export class TopicsPage {
     });
   }
 
-  // openSubTopicsPage(subtopics: any) {
-  //   // Navigate to the subtopics page based on the list of possible problemTypes
-  //   console.log('openSubTopicsPage', subtopics)
-  //   this.router.navigate(['./topic/', subtopics]);
-  // }
-
-  problemType: string = '';
-
   getColorForProblemType(type: string): string {
     // console.log('getColorForProblemType ', type)
 
     switch (type.toLowerCase()) {
       case 'addition':
-
         return 'var(--ion-color-addition)';
 
       case 'subtraction':
@@ -115,6 +130,7 @@ export class TopicsPage {
       case 'division':
         return 'var(--ion-color-division)';
 
+      // future development
       // case 'percent':
       //   return 'var(--ion-color-percent)';
 

@@ -1,4 +1,4 @@
-// primary colors for different calc types
+/* primary colors for different calc types */
 $addition-primary: #B0D235;
 $subtraction-primary: #3EB3CF;
 $multiplication-primary: #F18524;
@@ -9,7 +9,7 @@ $fraction-primary: #00A99D;
 $percent-primary: #F2738A;
 
 :root {
-	//addition
+	/* addition */
 	--ion-color-addition: #B0D235;
 	--ion-color-addition-rgb: 176,210,53;
 	--ion-color-addition-contrast: #000000;
@@ -17,7 +17,7 @@ $percent-primary: #F2738A;
 	--ion-color-addition-shade: #9bb92f;
 	--ion-color-addition-tint: #b8d749;
 
-	//subtraction
+	/* subtraction */
 	--ion-color-subtraction: #3EB3CF;
 	--ion-color-subtraction-rgb: 62,179,207;
 	--ion-color-subtraction-contrast: #000000;
@@ -25,7 +25,7 @@ $percent-primary: #F2738A;
 	--ion-color-subtraction-shade: #379eb6;
 	--ion-color-subtraction-tint: #51bbd4;
 
-	//multiplication
+	/* multiplication */
 	--ion-color-multiplication: #F18524;
 	--ion-color-multiplication-rgb: 241,133,36;
 	--ion-color-multiplication-contrast: #000000;
@@ -33,7 +33,7 @@ $percent-primary: #F2738A;
 	--ion-color-multiplication-shade: #d47520;
 	--ion-color-multiplication-tint: #f2913a;
 
-	//division
+	/* division */
 	--ion-color-division: #FDB913;
 	--ion-color-division-rgb: 253,185,19;
 	--ion-color-division-contrast: #000000;

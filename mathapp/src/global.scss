@@ -24,20 +24,17 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
-@import './theme/colorsByProblemType';
+
+/* import app themes scss files */
+@import './theme/colorsByProblemType.scss';
+
 
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
   --ion-font-family: 'Archivo Black', sans-serif;
-  // background-color: beige;
+
 }
 
-ion-button {
-  text-transform: none;
-  font-size-adjust: var(--ion-dynamic-font);
-  --background: beige;
-  --color: $addition-primary; 
-}
 
 ion-content {
   background-color: white;
@@ -47,7 +44,7 @@ ion-content {
 ion-col {
   display: flex;
   justify-content: center;
-  //  border-bottom: lightgray;
+  /*  border-bottom: lightgray; */
   color: $addition-primary;
   --ion-font-family: 'Archivo Black', sans-serif;
 }
