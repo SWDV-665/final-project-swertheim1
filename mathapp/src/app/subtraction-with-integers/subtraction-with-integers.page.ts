@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
-import { ResultsDataService } from '../results-data.service';
-import { HapticsService } from '../service/haptics.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
+import { HapticsService } from '../service/haptics-service/haptics.service';
 
 @Component({
   selector: 'app-subtraction-with-integers',
@@ -84,8 +84,9 @@ export class SubtractionWithIntegersPage implements OnInit {
       // if maximum number of problems have already been generated
       else {
           const dataToSend = {
-              totalQuestions: this.totalQuestionsToAsk,
-              totalCorrect: this.numberOfCorrectAnswers,
+            totalQuestions: this.totalQuestionsToAsk,
+            totalCorrect: this.numberOfCorrectAnswers,
+            totalAsked: this.numberOfQuestionsAsked,
           };
 
           this.resultsDataService.setSharedResults(dataToSend)

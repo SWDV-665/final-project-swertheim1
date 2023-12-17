@@ -97,6 +97,11 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'fallback'
   },
+  {
+    path: 'image.modal',
+    loadChildren: () => import('./image.modal/image.modal.module').then( m => m.ImageModalPageModule)
+  },
+
 
 ];
 

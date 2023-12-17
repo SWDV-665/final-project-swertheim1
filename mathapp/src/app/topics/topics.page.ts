@@ -247,4 +247,9 @@ export class TopicsPage {
     }
   }
 
+  breadcrumbItems = [
+    { text: 'Home', routerLink: '/home' },
+    { text: 'Topics', routerLink: '/topics'}
+  ]
+
 }

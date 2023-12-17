@@ -2,204 +2,216 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
-import { ResultsDataService } from '../results-data.service';
-import { HapticsService } from '../service/haptics.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
+import { HapticsService } from '../service/haptics-service/haptics.service';
+import { ImageModalServiceService } from '../service/image-modal-service/image-modal-service.service';
 
 @Component({
-  selector: 'app-multiplication-with-decimals',
-  templateUrl: './multiplication-with-decimals.page.html',
-  styleUrls: ['./multiplication-with-decimals.page.scss'],
+    selector: 'app-multiplication-with-decimals',
+    templateUrl: './multiplication-with-decimals.page.html',
+    styleUrls: ['./multiplication-with-decimals.page.scss'],
 })
 export class MultiplicationWithDecimalsPage implements OnInit {
 
-  MIN_ONE: number = 1;
-  MAX_ONE: number = 10;
-  MIN_TWO: number = 1;
-  MAX_TWO: number = 10;
+    MIN_ONE: number = 1;
+    MAX_ONE: number = 10;
+    MIN_TWO: number = 1;
+    MAX_TWO: number = 10;
 
-  randomNumber1: number = 0;
-  randomNumber2: number = 0;
+    randomNumber1: number = 0;
+    randomNumber2: number = 0;
 
-  DECIMAL_PLACES: number = 1;
-  DECIMAL_PLACE_TO_ROUND = 2;
+    DECIMAL_PLACES: number = 1;
+    DECIMAL_PLACE_TO_ROUND = 2;
 
-  answer: number = 0;
-  answerList: string[] = [];
-  alternateAnswer: number = 0;
-  numberOfAttempts: number = 0;           // Counter to keep track of the number of times an answer was tried
-  numberOfCorrectAnswers: number = 0;     // Counter for correct answers
-  numberOfQuestionsAsked: number = 0;      // Counter for questions asked
-  totalQuestionsToAsk: number = 3;        // Counter for total number of questions to ask
-  expression: string = '';
-  answerString: string = '';
+    answer: number = 0;
+    answerList: string[] = [];
+    alternateAnswer: number = 0;
+    numberOfAttempts: number = 0;           // Counter to keep track of the number of times an answer was tried
+    numberOfCorrectAnswers: number = 0;     // Counter for correct answers
+    numberOfQuestionsAsked: number = 0;      // Counter for questions asked
+    totalQuestionsToAsk: number = 3;        // Counter for total number of questions to ask
+    expression: string = '';
+    answerString: string = '';
 
-  constructor(private hapticsService: HapticsService, private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) {
-      console.log('Addition with decimal number constructor accessed');
-  }
+    constructor(private hapticsService: HapticsService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private toastController: ToastController,
+        private resultsDataService: ResultsDataService,
+        private imageModalService: ImageModalServiceService) {
+        console.log('Addition with decimal number constructor accessed');
+    }
 
-  ngOnInit() {
-
-
-      const { problemType, subtopic } = this.router.getCurrentNavigation()?.extras.state || {};
-      console.log(`Problem type: ${problemType}, Problem subtype ${subtopic}`);
-
-      // Check if the values are defined before proceeding
-      if (problemType && subtopic) {
-          this.generateProblem();
-      } else {
-          console.error('ProblemType or subtopic is undefined');
-      }
-  };
-
-  generateProblem(): void {
-      console.log('Generate Problem function accessed')
-
-      this.randomNumber1 = parseFloat(this.getRandomDecimalNumbers(this.MIN_ONE, this.MAX_ONE, this.DECIMAL_PLACES).toFixed(this.DECIMAL_PLACES));
-      this.randomNumber2 = parseFloat(this.getRandomDecimalNumbers(this.MIN_TWO, this.MAX_TWO, this.DECIMAL_PLACES).toFixed(this.DECIMAL_PLACES));
-      this.generateExpression();
-      console.log('this.answer', this.answer.toFixed(this.DECIMAL_PLACE_TO_ROUND))
-      // console.log('Random numbers: ', this.randomNumber1, this.randomNumber2, 'Expression: ', this.expression, 'Answer: ', this.randomNumber1 + this.randomNumber2)
-
-  }
-
-  generateExpression() {
-      console.log('generate an expression function accessed')
-      this.answerList = [];
-
-      if (this.numberOfQuestionsAsked < this.totalQuestionsToAsk) {
-          
-          this.answer = this.randomNumber1 * this.randomNumber2;
-          this.answerString = this.answer.toFixed(2);
-          
-          
-          // this.expression = `${this.randomNumber1} x ${this.randomNumber2}`
-          this.expression = `${parseFloat((this.randomNumber1).toFixed(1))} x ${parseFloat((this.randomNumber2).toFixed(1))}`;
-          this.generateAlternateAnswers();
-          this.shuffleAnswerList();
-          this.numberOfQuestionsAsked++;
-          this.numberOfAttempts = 0;
-
-      }
-      // if maximum number of problems have already been generated
-      else {
-          const dataToSend = {
-              totalQuestions: this.totalQuestionsToAsk,
-              totalCorrect: this.numberOfCorrectAnswers,
-          };
-
-          this.resultsDataService.setSharedResults(dataToSend)
-          console.log('Data sent to ResultsDataService:', dataToSend)
-          {
-              this.router.navigate(['../results']);
-          }
-      }
-  }
-
-  generateAlternateAnswers() {
-      // add correct answer to the list
-      console.log('generate an alternate answer function accessed')
-      this.answerList.push(this.answer.toFixed(2));
-
-      var PERCENTAGE = 10;
-      
-       // Ensure the percentage is within the valid range (0 to 100)
-      PERCENTAGE = Math.min(Math.max(PERCENTAGE, 0), 100);
+    ngOnInit() {
 
 
-      for (let i = 0; i < 8; i++) {
+        const { problemType, subtopic } = this.router.getCurrentNavigation()?.extras.state || {};
+        console.log(`Problem type: ${problemType}, Problem subtype ${subtopic}`);
 
-          // Calculate the minimum and maximum values based on the percentage
-          const minRange = this.answer - (this.answer * PERCENTAGE / 100);
-          const maxRange = this.answer + (this.answer * PERCENTAGE / 100);
+        // Check if the values are defined before proceeding
+        if (problemType && subtopic) {
+            this.generateProblem();
+        } else {
+            console.error('ProblemType or subtopic is undefined');
+        }
+    };
 
-          // Generate a random number within a particular percentage of actual answer
-          this.alternateAnswer = parseFloat((Math.random() * (maxRange - minRange) + minRange).toFixed(2));
-          
-          // Add alternate answer to the answer list if the answer is not in the list and it is not equal to the actual answer           
-          if ((this.answer !== this.alternateAnswer) && (!this.answerList.includes(this.alternateAnswer.toFixed(2)) )) {
-              this.answerList.push(this.alternateAnswer.toFixed(2));
-              console.log(this.answerList)
-          }
-          else {
-              // If the alternate answer is the same as the correct answer or already in the list, decrement i to repeat the iteration
-              console.log('alternate answer is equal to answer or alternate answer is in the list try again')
-              i--;
-          }
-      }
-      return this.answerList;
-  }
+    generateProblem(): void {
+        console.log('Generate Problem function accessed')
 
+        this.randomNumber1 = parseFloat(this.getRandomDecimalNumbers(this.MIN_ONE, this.MAX_ONE, this.DECIMAL_PLACES).toFixed(this.DECIMAL_PLACES));
+        this.randomNumber2 = parseFloat(this.getRandomDecimalNumbers(this.MIN_TWO, this.MAX_TWO, this.DECIMAL_PLACES).toFixed(this.DECIMAL_PLACES));
+        this.generateExpression();
+        console.log('this.answer', this.answer.toFixed(this.DECIMAL_PLACE_TO_ROUND))
+        // console.log('Random numbers: ', this.randomNumber1, this.randomNumber2, 'Expression: ', this.expression, 'Answer: ', this.randomNumber1 + this.randomNumber2)
 
-  getRandomDecimalNumbers(min: number, max: number, decimals: number): number {
-      //function multiplies the number by 10 to the power of the desired decimal places, 
-      //rounds it to the nearest integer, and then divides it back by the same factor. 
-      //This should help in achieving more accurate rounding for decimal numbers
-      const randomDecimal = Math.random() * (max - min) + min;
-      console.log(randomDecimal);
-      return parseFloat(randomDecimal.toFixed(this.DECIMAL_PLACE_TO_ROUND));
-  }
+    }
+
+    generateExpression() {
+        console.log('generate an expression function accessed')
+        this.answerList = [];
+
+        if (this.numberOfQuestionsAsked < this.totalQuestionsToAsk) {
+
+            this.answer = this.randomNumber1 * this.randomNumber2;
+            this.answerString = this.answer.toFixed(2);
 
 
- 
-  shuffleAnswerList() {
-      console.log('shuffle answer list function accessed')
-      // Fisher-Yates algorithm
-      // Picks a random item in the array then swaps with the current iteration
-      for (let i = this.answerList.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          const temp = this.answerList[i];
-          this.answerList[i] = this.answerList[j];
-          this.answerList[j] = temp;
-      }
-  }
+            // this.expression = `${this.randomNumber1} x ${this.randomNumber2}`
+            this.expression = `${parseFloat((this.randomNumber1).toFixed(1))} x ${parseFloat((this.randomNumber2).toFixed(1))}`;
+            this.generateAlternateAnswers();
+            this.shuffleAnswerList();
+            this.numberOfQuestionsAsked++;
+            this.numberOfAttempts = 0;
 
-  // Handle button click to check the answer
-  checkAnswer(selectedAnswer: string) {
-      console.log('check answer function accessed')
-      console.error('answer selected: ', selectedAnswer, 'answer String', this.answerString )
-      // count the number of attempts to answer the question correctly
-      this.numberOfAttempts++
-      console.log('number of uniques questions asked', this.numberOfQuestionsAsked)
-      console.log(`number of attempts after clicking an answer ${this.numberOfAttempts}`)
-      console.log(`number of questions answered correctly is: ${this.numberOfCorrectAnswers}`)
+        }
+        // if maximum number of problems have already been generated
+        else {
+            const dataToSend = {
+                totalQuestions: this.totalQuestionsToAsk,
+                totalCorrect: this.numberOfCorrectAnswers,
+                totalAsked: this.numberOfQuestionsAsked,
+            };
 
-      if (selectedAnswer === this.answerString) {
-          // Correct answer
-          this.numberOfCorrectAnswers++;
-          console.log(`Correct answer selected.`);
-          this.onCorrectAnswer();
-          this.showCustomToast(`Correct!`);
-          this.generateProblem();
+            this.resultsDataService.setSharedResults(dataToSend)
+            console.log('Data sent to ResultsDataService:', dataToSend)
+            {
+                this.router.navigate(['../results']);
+            }
+        }
+    }
 
-      } else {
-          // Incorrect answer
-          if (this.numberOfAttempts < 3 && this.answerString != selectedAnswer) {
-              console.log(`Attempt ${this.numberOfAttempts}: Try again!`);
-              this.showCustomToast(`Attempt ${this.numberOfAttempts}: Incorrect. Try again!`);
+    generateAlternateAnswers() {
+        // add correct answer to the list
+        console.log('generate an alternate answer function accessed')
+        this.answerList.push(this.answer.toFixed(2));
 
-          }
-          else {
-              this.showCustomToast(`Maximum Number of attempts was tried. The correct answer was ${this.answer}.`);
-              this.generateExpression();
+        var PERCENTAGE = 10;
 
-          }
-      }
-  }
+        // Ensure the percentage is within the valid range (0 to 100)
+        PERCENTAGE = Math.min(Math.max(PERCENTAGE, 0), 100);
 
-  showCustomToast = async (_customText: string) => {
-      console.log('show custom toast function accessed')
-      await Toast.show({
-          text: _customText,
-          duration: 'long',
-          position: 'center',
-      });
-      console.log('customToast activated')
-  };
 
-  onCorrectAnswer(): void {
-      // trigger haptic feedback
-      console.log('on correctAnswer function called')
-      this.hapticsService.hapticsImpactMedium()
-  }
+        for (let i = 0; i < 8; i++) {
+
+            // Calculate the minimum and maximum values based on the percentage
+            const minRange = this.answer - (this.answer * PERCENTAGE / 100);
+            const maxRange = this.answer + (this.answer * PERCENTAGE / 100);
+
+            // Generate a random number within a particular percentage of actual answer
+            this.alternateAnswer = parseFloat((Math.random() * (maxRange - minRange) + minRange).toFixed(2));
+
+            // Add alternate answer to the answer list if the answer is not in the list and it is not equal to the actual answer           
+            if ((this.answer !== this.alternateAnswer) && (!this.answerList.includes(this.alternateAnswer.toFixed(2)))) {
+                this.answerList.push(this.alternateAnswer.toFixed(2));
+                console.log(this.answerList)
+            }
+            else {
+                // If the alternate answer is the same as the correct answer or already in the list, decrement i to repeat the iteration
+                console.log('alternate answer is equal to answer or alternate answer is in the list try again')
+                i--;
+            }
+        }
+        return this.answerList;
+    }
+
+
+    getRandomDecimalNumbers(min: number, max: number, decimals: number): number {
+        //function multiplies the number by 10 to the power of the desired decimal places, 
+        //rounds it to the nearest integer, and then divides it back by the same factor. 
+        //This should help in achieving more accurate rounding for decimal numbers
+        const randomDecimal = Math.random() * (max - min) + min;
+        console.log(randomDecimal);
+        return parseFloat(randomDecimal.toFixed(this.DECIMAL_PLACE_TO_ROUND));
+    }
+
+
+
+    shuffleAnswerList() {
+        console.log('shuffle answer list function accessed')
+        // Fisher-Yates algorithm
+        // Picks a random item in the array then swaps with the current iteration
+        for (let i = this.answerList.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp = this.answerList[i];
+            this.answerList[i] = this.answerList[j];
+            this.answerList[j] = temp;
+        }
+    }
+
+    // Handle button click to check the answer
+    checkAnswer(selectedAnswer: string) {
+        console.log('check answer function accessed')
+        console.error('answer selected: ', selectedAnswer, 'answer String', this.answerString)
+        // count the number of attempts to answer the question correctly
+        this.numberOfAttempts++
+        console.log('number of uniques questions asked', this.numberOfQuestionsAsked)
+        console.log(`number of attempts after clicking an answer ${this.numberOfAttempts}`)
+        console.log(`number of questions answered correctly is: ${this.numberOfCorrectAnswers}`)
+
+        if (selectedAnswer === this.answerString) {
+            // Correct answer
+            this.numberOfCorrectAnswers++;
+            console.log(`Correct answer selected.`);
+            this.onCorrectAnswer();
+            this.showCustomToast(`Correct!`);
+            this.generateProblem();
+            this.openImageModal();
+
+        } else {
+            // Incorrect answer
+            if (this.numberOfAttempts < 3 && this.answerString != selectedAnswer) {
+                console.log(`Attempt ${this.numberOfAttempts}: Try again!`);
+                this.showCustomToast(`Attempt ${this.numberOfAttempts}: Incorrect. Try again!`);
+
+            }
+            else {
+                this.showCustomToast(`Maximum Number of attempts was tried. The correct answer was ${this.answer}.`);
+                this.generateExpression();
+
+            }
+        }
+    }
+
+    showCustomToast = async (_customText: string) => {
+        console.log('show custom toast function accessed')
+        await Toast.show({
+            text: _customText,
+            duration: 'long',
+            position: 'center',
+        });
+        console.log('customToast activated')
+    };
+
+    onCorrectAnswer(): void {
+        // trigger haptic feedback
+        console.log('on correctAnswer function called')
+        this.hapticsService.hapticsImpactMedium()
+    }
+    async openImageModal() {
+        const modal = await this.imageModalService.presentImageModal();
+
+    }
 
 }

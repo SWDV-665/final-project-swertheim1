@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
-import { ResultsDataService } from '../results-data.service';
-import { HapticsService } from '../service/haptics.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
+import { HapticsService } from '../service/haptics-service/haptics.service';
+import { ImageModalServiceService } from '../service/image-modal-service/image-modal-service.service';
 
 @Component({
     selector: 'app-addition-with-decimals',
@@ -33,7 +34,12 @@ export class AdditionWithDecimalsPage implements OnInit {
     expression: string = '';
     answerString: string = '';
 
-    constructor(private hapticsService: HapticsService, private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) {
+    constructor(private hapticsService: HapticsService, 
+        private route: ActivatedRoute, 
+        private router: Router, 
+        private toastController: ToastController, 
+        private resultsDataService: ResultsDataService,
+        private imageModalService: ImageModalServiceService) {
         console.log('Addition with decimal number constructor accessed');
     }
 
@@ -82,6 +88,7 @@ export class AdditionWithDecimalsPage implements OnInit {
             const dataToSend = {
                 totalQuestions: this.totalQuestionsToAsk,
                 totalCorrect: this.numberOfCorrectAnswers,
+                totalAsked: this.numberOfQuestionsAsked
             };
 
             this.resultsDataService.setSharedResults(dataToSend)
@@ -166,13 +173,14 @@ export class AdditionWithDecimalsPage implements OnInit {
             this.onCorrectAnswer();
             this.showCustomToast(`Correct!`);
             this.generateProblem();
+            this.openImageModal();
 
         } else {
             // Incorrect answer
             if (this.numberOfAttempts < 3 && this.answer != selectedAnswer) {
                 console.log(`Attempt ${this.numberOfAttempts}: Try again!`);
                 this.showCustomToast(`Attempt ${this.numberOfAttempts}: Incorrect. Try again!`);
-
+                
             }
             else {
                 // console.log(`Maximum Number of attempts tried. The correct answer is ${this.answer}.`)
@@ -198,6 +206,10 @@ export class AdditionWithDecimalsPage implements OnInit {
         console.log('on correctAnswer function called')
         this.hapticsService.hapticsImpactMedium()
     }
-
+    async openImageModal() {
+        const modal = await this.imageModalService.presentImageModal(); 
+        
+      }
 }
+
 

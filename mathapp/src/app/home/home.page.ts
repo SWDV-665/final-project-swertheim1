@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router'
-import { ImageHelperService } from '../service/image-helper.service';
+import { ImageHelperService } from '../service/image-helper/image-helper.service';
+import { IonBreadcrumb, IonBreadcrumbs } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -24,5 +25,8 @@ export class HomePage {
       this.router.navigate(['/topics', problemType], { queryParams: { imagePath: this.imagePath } })
   
   }
+  breadcrumbItems = [
+    { text: 'Home', routerLink: '/home' },
+  ]
 }
 

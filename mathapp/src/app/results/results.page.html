@@ -11,22 +11,34 @@
     </ion-toolbar>
   </ion-header>
 
-  
-  <ion-grid>
+  <ion-grid fixed="true" class="ion-justify-content-start">
+
     <ion-row>
-      <ion-col class="ion-align-self-center">
-          <h1> Correct answers: {{ sharedResults.totalQuestions }}</h1>
-      </ion-col>
-      <ion-col class="ion-align-self-center">
-        <h1> Correct answers: {{ sharedResults.totalQuestions }}</h1>
-    </ion-col>
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#home">Home</ion-breadcrumb>
+        <ion-breadcrumb href="#results">Results</ion-breadcrumb>
+      </ion-breadcrumbs>
     </ion-row>
+    </ion-grid>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-align-self-center">
+          <h1> Number of Questions: {{ sharedResults.totalQuestions }}</h1>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <h1> Number of Correct Answers: {{ sharedResults.totalCorrect }}</h1>
+        </ion-col>
+      </ion-row>
+     
+  </ion-grid  >
+  <ion-grid fixed="true">
     <ion-row>
       <ion-col></ion-col>
       <ion-col>
         <div class="column-container">
-          <div >
-            <ion-button id='try-again' expand="block" (click)="handleButtonClick()">Try Again!</ion-button>
+          <div>
+            <ion-button size="large" id='try-again' expand="block" (click)="handleButtonClick()">Try Again!</ion-button>
           </div>
         </div>
       </ion-col>

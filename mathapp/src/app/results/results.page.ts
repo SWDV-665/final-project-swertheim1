@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ResultsDataService } from '../results-data.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +21,11 @@ export class ResultsPage implements OnInit {
   handleButtonClick() {
     this.router.navigate([`/home`]);;
     }
+
+    breadcrumbItems = [
+      { text: 'Home', routerLink: '/home' },
+      { text: 'Results', routerLink: '/results'}
+    ]
 
 }
 

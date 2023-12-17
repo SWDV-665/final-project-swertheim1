@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
-import { ResultsDataService } from '../results-data.service';
-import { HapticsService } from '../service/haptics.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
+import { HapticsService } from '../service/haptics-service/haptics.service';
+import { AnswerCheckerService } from '../service/answer-checker/answer-checker.service';
+import { ImageModalServiceService } from '../service/image-modal-service/image-modal-service.service';
+
 
 @Component({
   selector: 'app-multiplication-with-integers',
@@ -29,7 +32,13 @@ export class MultiplicationWithIntegersPage implements OnInit {
   totalQuestionsToAsk: number = 3         // Counter for total number of questions to ask
   expression: string = ''
 
-  constructor(private hapticsService: HapticsService, private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) {
+  constructor(private hapticsService: HapticsService, 
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastController: ToastController,
+    private resultsDataService: ResultsDataService,
+    private answerCheckerService: AnswerCheckerService,
+    private imageModalService: ImageModalServiceService) {
     console.log('Addition with whole number constructor accessed');
   }
 
@@ -81,11 +90,12 @@ export class MultiplicationWithIntegersPage implements OnInit {
       this.numberOfAttempts = 0;
 
     }
-    // if maximum number of problems have already been generated
+    // if maximum number of problems have already been generated send results to results page
     else {
       const dataToSend = {
         totalQuestions: this.totalQuestionsToAsk,
         totalCorrect: this.numberOfCorrectAnswers,
+        totalAsked: this.numberOfQuestionsAsked
       };
 
       this.resultsDataService.setSharedResults(dataToSend)
@@ -140,6 +150,11 @@ export class MultiplicationWithIntegersPage implements OnInit {
     }
   }
 
+  // TO DO: MOVE checkAnswer to a Service
+  // checkAnswer(selectedAnswer: number) {
+  //   const result = this.answerCheckerService.checkAnswer(this.answer, selectedAnswer);
+  // }
+
   // Handle button click to check the answer
   checkAnswer(selectedAnswer: number) {
     console.log('check answer function accessed')
@@ -149,13 +164,14 @@ export class MultiplicationWithIntegersPage implements OnInit {
     console.log(`number of attempts after clicking an answer ${this.numberOfAttempts}`)
     console.log(`number of questions answered correctly is: ${this.numberOfCorrectAnswers}`)
 
-    if (typeof this.answer === 'number' && selectedAnswer === this.answer) {
+    if (selectedAnswer === this.answer) {
       // Correct answer
       this.numberOfCorrectAnswers++;
-      console.log(`Correct answer selected.`);
+      console.log(`Correct answer selected.`, 'Number of correct answers:', this.numberOfCorrectAnswers,);
       this.onCorrectAnswer();
       this.showCustomToast(`Correct!`);
       this.generateProblem();
+      this.openImageModal();
 
     } else {
       // Incorrect answer
@@ -188,6 +204,9 @@ export class MultiplicationWithIntegersPage implements OnInit {
     this.hapticsService.hapticsImpactMedium()
   }
 
-}
+  async openImageModal() {
+    const modal = await this.imageModalService.presentImageModal();
 
+  }
+}
 

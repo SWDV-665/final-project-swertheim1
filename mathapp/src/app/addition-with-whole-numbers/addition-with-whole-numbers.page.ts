@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
-import { ResultsDataService } from '../results-data.service';
-import { HapticsService } from '../service/haptics.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
+import { HapticsService } from '../service/haptics-service/haptics.service';
+import { ImageModalServiceService } from '../service/image-modal-service/image-modal-service.service';
 
 @Component({
     selector: 'app-addition-with-whole-numbers',
@@ -25,11 +26,17 @@ export class AdditionWithWholeNumbersPage implements OnInit {
     alternateAnswer: number = 0;
     numberOfAttempts: number = 0;           // Counter to keep track of the number of times an answer was tried
     numberOfCorrectAnswers: number = 0;     // Counter for correct answers
-    numberOfQuestionsAsked: number = 0      // Counter for questions asked
-    totalQuestionsToAsk: number = 3         // Counter for total number of questions to ask
-    expression: string = ''
+    numberOfQuestionsAsked: number = 0;      // Counter for questions asked
+    totalQuestionsToAsk: number = 3;         // Counter for total number of questions to ask
+    expression: string = '';
 
-    constructor(private hapticsService: HapticsService, private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) {
+
+    constructor(private hapticsService: HapticsService, 
+        private route: ActivatedRoute, 
+        private router: Router, 
+        private toastController: ToastController, 
+        private resultsDataService: ResultsDataService,
+        private imageModalService: ImageModalServiceService) {
         console.log('Addition with whole number constructor accessed');
     }
 
@@ -77,6 +84,8 @@ export class AdditionWithWholeNumbersPage implements OnInit {
             const dataToSend = {
                 totalQuestions: this.totalQuestionsToAsk,
                 totalCorrect: this.numberOfCorrectAnswers,
+                totalAsked: this.numberOfQuestionsAsked,
+
             };
 
             this.resultsDataService.setSharedResults(dataToSend)
@@ -147,6 +156,7 @@ export class AdditionWithWholeNumbersPage implements OnInit {
             this.onCorrectAnswer();
             this.showCustomToast(`Correct!`);
             this.generateProblem();
+            this.openImageModal();
 
         } else {
             // Incorrect answer
@@ -177,6 +187,10 @@ export class AdditionWithWholeNumbersPage implements OnInit {
         // trigger haptic feedback
         console.log('on correctAnswer function called')
         this.hapticsService.hapticsImpactMedium()
+    }
+    async openImageModal() {
+        const modal = await this.imageModalService.presentImageModal();
+
     }
 
 }

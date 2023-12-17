@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@capacitor/toast';
 import { ToastController } from '@ionic/angular';
-import { ResultsDataService } from '../results-data.service';
-import { HapticsService } from '../service/haptics.service';
+import { ResultsDataService } from '../service/results-data/results-data.service';
+import { HapticsService } from '../service/haptics-service/haptics.service';
+import { ImageModalServiceService } from '../service/image-modal-service/image-modal-service.service';
 
 @Component({
     selector: 'app-addition-with-integers',
@@ -25,11 +26,17 @@ export class AdditionWithIntegersPage implements OnInit {
     alternateAnswer: number = 0;
     numberOfAttempts: number = 0;           // Counter to keep track of the number of times an answer was tried
     numberOfCorrectAnswers: number = 0;     // Counter for correct answers
-    numberOfQuestionsAsked: number = 0      // Counter for questions asked
-    totalQuestionsToAsk: number = 3         // Counter for total number of questions to ask
-    expression: string = ''
+    numberOfQuestionsAsked: number = 0;     // Counter for questions asked
+    totalQuestionsToAsk: number = 3;        // Counter for total number of questions to ask
+    expression: string = '';
+    totalAsked: number = 0;
 
-    constructor(private hapticsService: HapticsService, private route: ActivatedRoute, private router: Router, private toastController: ToastController, private resultsDataService: ResultsDataService) {
+    constructor(private hapticsService: HapticsService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private toastController: ToastController,
+        private resultsDataService: ResultsDataService,
+        private imageModalService: ImageModalServiceService) {
         console.log('Addition with whole number constructor accessed');
     }
 
@@ -87,6 +94,7 @@ export class AdditionWithIntegersPage implements OnInit {
             const dataToSend = {
                 totalQuestions: this.totalQuestionsToAsk,
                 totalCorrect: this.numberOfCorrectAnswers,
+                totalAsked: this.numberOfQuestionsAsked,
             };
 
             this.resultsDataService.setSharedResults(dataToSend)
@@ -157,13 +165,14 @@ export class AdditionWithIntegersPage implements OnInit {
             this.onCorrectAnswer();
             this.showCustomToast(`Correct!`);
             this.generateProblem();
+            this.openImageModal();
 
         } else {
             // Incorrect answer
             if (this.numberOfAttempts < 3 && this.answer != selectedAnswer) {
                 console.log(`Attempt ${this.numberOfAttempts}: Try again!`);
                 this.showCustomToast(`Attempt ${this.numberOfAttempts}: Incorrect. Try again!`);
-
+                this.generateProblem()
             }
             else {
                 this.showCustomToast(`Maximum Number of attempts was tried. The correct answer was ${this.answer}.`);
@@ -189,6 +198,8 @@ export class AdditionWithIntegersPage implements OnInit {
         this.hapticsService.hapticsImpactMedium()
     }
 
+    async openImageModal() {
+        const modal = await this.imageModalService.presentImageModal();
+
+    }
 }
-
-
