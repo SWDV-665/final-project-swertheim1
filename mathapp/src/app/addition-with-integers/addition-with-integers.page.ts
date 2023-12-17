@@ -6,20 +6,20 @@ import { ResultsDataService } from '../results-data.service';
 import { HapticsService } from '../service/haptics.service';
 
 @Component({
-  selector: 'app-addition-with-integers',
-  templateUrl: './addition-with-integers.page.html',
-  styleUrls: ['./addition-with-integers.page.scss'],
+    selector: 'app-addition-with-integers',
+    templateUrl: './addition-with-integers.page.html',
+    styleUrls: ['./addition-with-integers.page.scss'],
 })
 export class AdditionWithIntegersPage implements OnInit {
 
-  MIN_ONE: number = -10;
+    MIN_ONE: number = -10;
     MAX_ONE: number = 10;
     MIN_TWO: number = -10;
     MAX_TWO: number = 10;
 
     randomNumber1: number = 0;
     randomNumber2: number = 0;
-   
+
     answer: number = 0;
     answerList: number[] = [];
     alternateAnswer: number = 0;
@@ -47,12 +47,22 @@ export class AdditionWithIntegersPage implements OnInit {
         }
     };
 
-    
+
     generateProblem(): void {
         console.log('Generate Problem function accessed')
 
         this.randomNumber1 = this.generateRandomWholeNumbers(this.MIN_ONE, this.MAX_ONE);
         this.randomNumber2 = this.generateRandomWholeNumbers(this.MIN_TWO, this.MAX_TWO);
+
+        //ensure at least one number is negative:
+        if (this.randomNumber1 > -1 && this.randomNumber2 > -1) {// Randomly decide which number should be negative
+            const isNegative = Math.random() < 0.5;
+
+            // Apply the negative sign if needed
+            this.randomNumber1 = isNegative ? -this.randomNumber1 : this.randomNumber1;
+            this.randomNumber2 = isNegative ? this.randomNumber2 : -this.randomNumber2;
+        }
+
         this.generateExpression();
         console.log('Random numbers: ', this.randomNumber1, this.randomNumber2, 'Expression: ', this.expression, 'Answer: ', this.randomNumber1 + this.randomNumber2)
     }
@@ -63,7 +73,7 @@ export class AdditionWithIntegersPage implements OnInit {
 
         if (this.numberOfQuestionsAsked < this.totalQuestionsToAsk) {
             this.answer = this.randomNumber1 + this.randomNumber2;
-            
+
             //clear answer list when a new expression is generated
             this.expression = `${this.randomNumber1} + ${this.randomNumber2}`
             this.generateAlternateAnswers();
@@ -110,7 +120,7 @@ export class AdditionWithIntegersPage implements OnInit {
                 i--;
             }
         }
-	return this.answerList;
+        return this.answerList;
     }
 
     generateRandomWholeNumbers(min: number, max: number): number {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TopicsPage } from './topics/topics.page';
+import { FallbackPage } from './fallback/fallback.page';
 
 
 
@@ -18,10 +19,6 @@ const routes: Routes = [
   {
     path: 'topics/:problemType',
     loadChildren: () => import('./topics/topics.module').then((m) => m.TopicsPageModule)
-  },
-  {
-    path: 'problems-page',
-    loadChildren: () => import('./problems-page/problems-page.module').then( m => m.ProblemsPagePageModule)
   },
   {
     path: 'results',
@@ -44,8 +41,6 @@ const routes: Routes = [
     path: 'addition-with-fractions',
     loadChildren: () => import('./addition-with-fractions/addition-with-fractions.module').then( m => m.AdditionWithFractionsPageModule)
   },
-
-  
   {
     path: 'subtraction-with-whole-numbers',
     loadChildren: () => import('./subtraction-with-whole-numbers/subtraction-with-whole-numbers.module').then( m => m.SubtractionWithWholeNumbersPageModule)
@@ -78,10 +73,30 @@ const routes: Routes = [
     path: 'multiplication-with-decimals',
     loadChildren: () => import('./multiplication-with-decimals/multiplication-with-decimals.module').then( m => m.MultiplicationWithDecimalsPageModule)
   },
-
-
-
-
+  {
+    path: 'division-with-whole-numbers',
+    loadChildren: () => import('./division-with-whole-numbers/division-with-whole-numbers.module').then( m => m.DivisionWithWholeNumbersPageModule)
+  },
+  {
+    path: 'division-with-integers',
+    loadChildren: () => import('./division-with-integers/division-with-integers.module').then( m => m.DivisionWithIntegersPageModule)
+  },
+  {
+    path: 'division-with-fractions',
+    loadChildren: () => import('./division-with-fractions/division-with-fractions.module').then( m => m.DivisionWithFractionsPageModule)
+  },
+  {
+    path: 'division-with-decimals',
+    loadChildren: () => import('./division-with-decimals/division-with-decimals.module').then( m => m.DivisionWithDecimalsPageModule)
+  },
+  {
+    path: 'fallback',
+    loadChildren: () => import('./fallback/fallback.module').then( m => m.FallbackPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'fallback'
+  },
 
 ];
 

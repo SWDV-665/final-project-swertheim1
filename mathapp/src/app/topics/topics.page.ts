@@ -50,6 +50,8 @@ export class TopicsPage {
 
   loadProblems(problemType: string, subtopic: string) {
     console.log('loadProblems function accessed')
+  
+
     // Ensure problemType is a valid string before proceeding
     if (problemType && typeof problemType === 'string') {
 
@@ -67,6 +69,7 @@ export class TopicsPage {
       // Navigate to the constructed pageName
       console.log(`Navigate to the constructed page with the following: /${pageName}`)
       this.router.navigate([`/${pageName}`], { state: { problemType, subtopic } });
+
     }
   }
 
@@ -75,7 +78,6 @@ export class TopicsPage {
       console.log(`handleButtonClick called with: ${problemType} and a subtopic of ${subtopic}`);
 
       this.imagePath = this.getImagePath(problemType);
-
       
       console.log('image path: ', this.imagePath);
       switch (subtopic.toLowerCase()) {
@@ -120,11 +122,11 @@ export class TopicsPage {
 
       case 'multiplication':
         return 'var(--ion-color-multiplication)';
-
+      
       case 'division':
         return 'var(--ion-color-division)';
-
-      // future development
+      
+        // future development
       // case 'percent':
       //   return 'var(--ion-color-percent)';
 

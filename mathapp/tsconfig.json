@@ -17,13 +17,14 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2022",
-    "module": "es2020",
+    "target": "es2018",   //original value es2018
+    "module": "es2020",   //original value es2020
     "lib": [
-      "es2018", 
+      "es2018",           //original value es2018
       "dom"
     ],
     "useDefineForClassFields": false,
+    "moduleDetection": "force",
    
     "suppressImplicitAnyIndexErrors": true,
     "ignoreDeprecations": "5.0",

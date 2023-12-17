@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProblemsPagePageRoutingModule } from './problems-page-routing.module';
-import { ProblemsPageComponent } from './problems-page.page'
+import { FallbackPageRoutingModule } from './fallback-routing.module';
 
+import { FallbackPage } from './fallback.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProblemsPagePageRoutingModule
+    FallbackPageRoutingModule
   ],
-  declarations: [ProblemsPageComponent]
+  declarations: [FallbackPage]
 })
-
-export class ProblemsPagePageModule {}
+export class FallbackPageModule {}

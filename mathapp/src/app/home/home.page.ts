@@ -14,17 +14,15 @@ export class HomePage {
 
   openTopicsPage(problemType: any) {
     console.log('opening ', ' /', problemType, ' topics');
-    
+
     //get image based on button click
     this.imagePath = this.imageHelperService.getImagePath(problemType);
-    
-    // Navigate to the 'topics' route with the selected problem type as a parameter
+
+    // Navigate to the 'topics' route with the selected problem type as a parameter and send button image as a queryParam
     console.log('image path: ', this.imagePath)
-    // this.router.navigate(['/topics', problemType], { queryParams: { imagePath: this.imagePath } });
-    // this.router.navigate(['/topics', problemType, { imagePath: this.imagePath }]);
-    // this.router.navigate(['/topics', problemType], { queryParams: { imagePath: this.imagePath } });
-    // this.router.navigate(['/topics', { problemType: problemType, imagePath: this.imagePath }]);
-    this.router.navigate(['/topics', problemType], { queryParams: { imagePath: this.imagePath } });
+   
+      this.router.navigate(['/topics', problemType], { queryParams: { imagePath: this.imagePath } })
+  
   }
 }
 
